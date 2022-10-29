@@ -195,7 +195,10 @@ const Index = () => {
                   <h2 class="mb-5 mt-2">Their opinion about peworld</h2>
                 </div>
               </div>
-              <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="row row-cols-1 row-cols-md-3 g-4 position-relative overflow">
+                <div className="sliderNav sliderNavLeft">
+                  <button type="button" className="number-list d-flex align-items-center justify-content-center">&#x3c;</button>
+                </div>
                 <div class="col text-center">
                   <div class="card h-100 shadow-lg border border-0">
                     <img
@@ -207,7 +210,7 @@ const Index = () => {
                     <div class="card-body text-center">
                       <h5 class="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p class="card-text px-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
@@ -225,7 +228,7 @@ const Index = () => {
                     <div class="card-body text-center">
                       <h5 class="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p class="card-text px-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
@@ -243,12 +246,15 @@ const Index = () => {
                     <div class="card-body text-center">
                       <h5 class="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p class="card-text px-5">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
                     </div>
                   </div>
+                </div>
+                <div className="sliderNav sliderNavRight">
+                  <button type="button" className="number-list d-flex align-items-center justify-content-center">&#x3e;</button>
                 </div>
               </div>
             </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 const Navbar = () => {
   return (
      <div className="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-light">
+        <nav class="navbar navbar-expand-lg bg-white">
           <div class="container-fluid">
           <Link className="navbar-brand mx-5" href="/">
             <img
