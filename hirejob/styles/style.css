@@ -1,0 +1,139 @@
+.body{
+    background-color: #E2E5ED !important;
+    height: 100%;
+}
+.bgImage {
+    background-image: linear-gradient(rgba(93, 80, 161, 0.716),rgba(93, 80, 161, 0.724) ),url(/regisimg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 95vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.custLogo{
+    margin-top: -280px !important; ;
+}
+.btnCustom{
+    background-color: #FBB017 !important;
+    color: white !important;
+}
+form div button .a {
+    text-decoration: none;
+    color: white !important;
+}
+form div .adiv{
+    text-decoration: none;
+    color: #9b9898 !important;
+}
+.lineHeight{
+    line-height: 1.5 !important;
+}
+
+.back{
+    margin-left: 3rem !important;
+    margin: 1rem !important;
+}
+
+form div p .ap{
+    text-decoration: none;
+    color: #FBB017 !important;
+}
+
+@media screen and (max-width: 600px) {
+    .custLogo{
+        margin-top: -100px !important; ;
+    }
+    .back{
+        margin: 0 !important;
+        margin-left: 0 !important;
+    }
+    .logoMobile{
+        margin-left: 0 !important;
+    }
+}
+
+.customBorder {
+    border: 3px solid #2395ff !important;
+  }
+
+  .btnGrape{
+    background-color: #5E50A1 !important;
+    color: white !important;
+  }
+  .btnGrape2{
+    background-color: white !important;
+    color: #5E50A1 !important;
+    border: 1px solid #5E50A1 !important;
+  }
+
+  .btnGrape:hover{
+    background-color: #9288c2 !important;
+    color: white !important;
+  }
+  .btnGrape2:hover{
+    background-color: #5E50A1 !important;
+    color: white !important;
+  }
+
+  .bgSection{
+    background-color: #5E50A1 !important;
+    color: white !important;
+    /* border radius */
+    -webkit-border-radius: 30px;
+  }
+
+  .bgFooter{
+    background-color: #5E50A1 !important;
+    color: white !important;
+  }
+
+  .custAfooter{
+    color: white !important;
+    list-style: none;
+  }
+
+  svg{
+    padding: 0 !important;
+  }
+
+  .btnStart{
+    background-color: white !important;
+    color: #5E50A1 !important;
+    height: 60px;
+    width: 200px;
+  }
+
+  .number-list {
+    padding: 5px;
+    background-color: #5E50A1 !important;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    color: white !important;
+  }
+  .number-list2 {
+    padding: 5px;
+    background-color: #FBB017 !important;
+    border-radius: 100%;
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+    color: white !important;
+  }
+  .customList{
+    list-style-type: none;
+  }
+  
+  @media screen and (max-width: 600px) {
+    .btnStart{
+        height: 50px;
+        width: 150px;
+    }
+    .bgSection{
+        -webkit-border-radius: 0px;
+    }
+  }
