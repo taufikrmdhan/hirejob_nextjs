@@ -3,13 +3,13 @@ import React from "react";
 
 const Sidepage = () => {
   return (
-    <div class="back col-md-5 bgImage">
-      <div class="row">
-        <div class="col-md-12 custLogo ">
+    <div className="back col-md-5 bgImage">
+      <div className="row">
+        <div className="col-md-12 custLogo ">
           <img src="/logohire.png " alt="img icon" />
         </div>
-        <div class="col-md-12">
-          <h1 class="text-white mx-5 lineHeight">
+        <div className="col-md-12">
+          <h1 className="text-white mx-5 lineHeight">
             Temukan developer berbakat & terbaik di berbagai bidang keahlian
           </h1>
         </div>

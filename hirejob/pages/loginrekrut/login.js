@@ -58,10 +58,10 @@ const Index = () => {
                   </Link>
                 </button>
               </div>
-              <div class="text-center">
-              <p class="text-muted">
+              <div className="text-center">
+              <p className="text-muted">
                 Anda belum punya akun?
-                <Link class="ap" href="/registerrekrut/register"> Daftar disini</Link>
+                <Link className="ap" href="/registerrekrut/register"> Daftar disini</Link>
               </p>
             </div>
             </form>

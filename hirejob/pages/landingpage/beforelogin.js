@@ -12,13 +12,13 @@ const Index = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-white fixed-top">
-          <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg bg-white fixed-top">
+          <div className="container-fluid">
             <Link className="navbar-brand mx-5" href="/">
               <img src="/Group 980 2.png" width="100" alt="logo" />
             </Link>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarText"
@@ -26,10 +26,10 @@ const Index = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0"></ul>
+            <div className="collapse navbar-collapse" id="navbarText">
+              <ul className="navbar-nav me-auto mb-2 ms-5 mb-lg-0"></ul>
               <Link className="" href="/loginrekrut/login">
                 <button
                   type="button"
@@ -44,66 +44,66 @@ const Index = () => {
             </div>
           </div>
         </nav>
-        <section class="container mt-5">
-          <div class="row mb-5">
-            <div class="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
-              <div class="container">
-                <h1 class="my-4">
+        <section className="container mt-5">
+          <div className="row mb-5">
+            <div className="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
+              <div className="container">
+                <h1 className="my-4">
                   Talenta terbaik negri untuk perubahan revolusi 4.0
                 </h1>
-                <p class="text-muted">
+                <p className="text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
                   euismod ipsum et dui rhoncus auctor.
                 </p>
-                <div class="my-5">
-                  <button type="button" class="btn btnGrape">
+                <div className="my-5">
+                  <button type="button" className="btn btnGrape">
                     Mulai Dari Sekarang
                   </button>
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="container">
-                <img src="/Group 1195.png" alt="" class="img-fluid" />
+            <div className="col-md-6">
+              <div className="container">
+                <img src="/Group 1195.png" alt="" className="img-fluid" />
               </div>
             </div>
           </div>
         </section>
       </div>
       <main>
-        <section class="container-fluid p-5 mt-5t">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="container">
-                <img src="/Group 1194.png" alt="" class="img-fluid" />
+        <section className="container-fluid p-5 mt-5t">
+          <div className="row">
+            <div className="col-md-6">
+              <div className="container">
+                <img src="/Group 1194.png" alt="" className="img-fluid" />
               </div>
             </div>
-            <div class="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
-              <div class="container">
+            <div className="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
+              <div className="container">
                 <h3 className="mb-5">
                   Kenapa harus mencari tallent di peworld
                 </h3>
                 <ul className="customList">
                   <li className="d-flex flex-row mt-3">
-                    <div class="number-list d-flex justify-content-center align-items-center me-3">
+                    <div className="number-list d-flex justify-content-center align-items-center me-3">
                       &#10003;
                     </div>
                     Lorem ipsum dolor sit amet.
                   </li>
                   <li className="d-flex flex-row mt-3">
-                    <div class="number-list d-flex justify-content-center align-items-center me-3">
+                    <div className="number-list d-flex justify-content-center align-items-center me-3">
                       &#10003;
                     </div>
                     Lorem ipsum dolor sit amet.
                   </li>
                   <li className="d-flex flex-row mt-3">
-                    <div class="number-list d-flex justify-content-center align-items-center me-3">
+                    <div className="number-list d-flex justify-content-center align-items-center me-3">
                       &#10003;
                     </div>
                     Lorem ipsum dolor sit amet.
                   </li>
                   <li className="d-flex flex-row mt-3">
-                    <div class="number-list d-flex justify-content-center align-items-center me-3">
+                    <div className="number-list d-flex justify-content-center align-items-center me-3">
                       &#10003;
                     </div>
                     Lorem ipsum dolor sit amet.
@@ -113,10 +113,10 @@ const Index = () => {
             </div>
           </div>
         </section>
-        <section class="container mt-5">
-          <div class="row mb-5">
-            <div class="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
-              <div class="container">
+        <section className="container mt-5">
+          <div className="row mb-5">
+            <div className="col-md-6 d-flex align-items-start d-flex flex-column justify-content-center">
+              <div className="container">
                 <h3 className="mb-4">Skill Tallent</h3>
                 <p className="text-muted">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. In
@@ -126,25 +126,25 @@ const Index = () => {
                   <div className="col-md-6">
                     <ul className="customList">
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
@@ -154,25 +154,25 @@ const Index = () => {
                   <div className="col-md-6">
                     <ul className="customList">
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
                       </li>
                       <li className="d-flex flex-row mt-3">
-                        <div class="number-list2 d-flex justify-content-center align-items-center me-3">
+                        <div className="number-list2 d-flex justify-content-center align-items-center me-3">
                           &#10003;
                         </div>
                         Lorem ipsum dolor sit amet.
@@ -182,70 +182,70 @@ const Index = () => {
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="container">
-                <img src="/Group 1196.jpg" alt="" class="img-fluid" />
+            <div className="col-md-6">
+              <div className="container">
+                <img src="/Group 1196.jpg" alt="" className="img-fluid" />
               </div>
             </div>
           </div>
         </section>
-        <section class="container-fluid p-5 bg-light">
-          <div class="py-5">
-            <div class="container">
-              <div class="row justify-content-center mb-4">
-                <div class="col-md-7 text-center">
-                  <h2 class="mb-5 mt-2">Their opinion about peworld</h2>
+        <section className="container-fluid p-5 bg-light">
+          <div className="py-5">
+            <div className="container">
+              <div className="row justify-content-center mb-4">
+                <div className="col-md-7 text-center">
+                  <h2 className="mb-5 mt-2">Their opinion about peworld</h2>
                 </div>
               </div>
-              <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col text-center">
-                  <div class="card h-100 shadow-lg border border-0">
+              <div className="row row-cols-1 row-cols-md-3 g-4">
+                <div className="col text-center">
+                  <div className="card h-100 shadow-lg border border-0">
                     <img
                       src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg"
                       width={200}
                       alt="wrapkit"
-                      class="img-fluid rounded-circle d-flex align-self-center mt-3 d-flex align-self-center mt-3"
+                      className="img-fluid rounded-circle d-flex align-self-center mt-3 d-flex align-self-center mt-3"
                     />
-                    <div class="card-body text-center">
-                      <h5 class="card-title">Harry Style</h5>
+                    <div className="card-body text-center">
+                      <h5 className="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p className="card-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div class="col text-center">
-                  <div class="card h-100 shadow-lg border border-0">
+                <div className="col text-center">
+                  <div className="card h-100 shadow-lg border border-0">
                     <img
                       src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg"
                       width={200}
                       alt="wrapkit"
-                      class="img-fluid rounded-circle d-flex align-self-center mt-3"
+                      className="img-fluid rounded-circle d-flex align-self-center mt-3"
                     />
-                    <div class="card-body text-center">
-                      <h5 class="card-title">Harry Style</h5>
+                    <div className="card-body text-center">
+                      <h5 className="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p className="card-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
                     </div>
                   </div>
                 </div>
-                <div class="col text-center">
-                  <div class="card h-100 shadow-lg border border-0">
+                <div className="col text-center">
+                  <div className="card h-100 shadow-lg border border-0">
                     <img
                       src="https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/team/t1.jpg"
                       width={200}
                       alt="wrapkit"
-                      class="img-fluid rounded-circle d-flex align-self-center mt-3"
+                      className="img-fluid rounded-circle d-flex align-self-center mt-3"
                     />
-                    <div class="card-body text-center">
-                      <h5 class="card-title">Harry Style</h5>
+                    <div className="card-body text-center">
+                      <h5 className="card-title">Harry Style</h5>
                       <p className="text-muted">Web Developer</p>
-                      <p class="card-text">
+                      <p className="card-text">
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                         In euismod ipsum et dui rhoncus auctor.
                       </p>
@@ -256,7 +256,7 @@ const Index = () => {
             </div>
           </div>
         </section>
-        <section class="container-fluid custHeight p-5 mb-5">
+        <section className="container-fluid custHeight p-5 mb-5">
           <div className="row bgSection mx-5 pt-5">
             <div className="col-md-4">
               <h2 className="px-5 pt-5">Lorem ipsum dolor sit amet</h2>

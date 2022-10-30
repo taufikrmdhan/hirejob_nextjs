@@ -118,7 +118,7 @@ const Index = () => {
                       Portofolio
                     </a>
                     <a
-                      class="btn mx-4 fs-4"
+                      className="btn mx-4 fs-4"
                       data-bs-toggle="collapse"
                       href="#multiCollapseExample2"
                     >
@@ -127,7 +127,7 @@ const Index = () => {
                   </p>
 
                   <div
-                    class="collapse multi-collapse"
+                    className="collapse multi-collapse"
                     id="multiCollapseExample1"
                   >
                     <div class="container-fluid mt-5">
@@ -183,10 +183,10 @@ const Index = () => {
                   </div>
 
                   <div
-                    class="collapse multi-collapse"
+                    className="collapse multi-collapse"
                     id="multiCollapseExample2"
                   >
-                    <div class="container mt-5">
+                    <div className="container mt-5">
                       {/* Pengalaman kerja  */}
                       <div className="card mb-3 border-0 my-4">
                         <div className="row g-0">

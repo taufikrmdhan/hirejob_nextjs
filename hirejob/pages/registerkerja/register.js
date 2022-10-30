@@ -25,70 +25,70 @@ const Index = () => {
                   sunt.
                 </p>
                 <div>
-                  <label for="inputUsername" class="form-label">
+                  <label for="inputUsername" className="form-label">
                     Nama
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     id="inputUsername"
                     placeholder="Masukkan nama panjang"
                   />
                 </div>
                 <div>
-                  <label for="inputEmail" class="form-label">
+                  <label for="inputEmail" className="form-label">
                     Email
                   </label>
                   <input
                     type="email"
-                    class="form-control"
+                    className="form-control"
                     id="inputEmail"
                     placeholder="Masukkan email"
                   />
                 </div>
                 <div>
-                  <label for="inputPhone" class="form-label">
+                  <label for="inputPhone" className="form-label">
                     No handphone
                   </label>
                   <input
-                    class="form-control"
+                    className="form-control"
                     id="inputPhone"
                     placeholder="08xxxxxxxxx"
                   />
                 </div>
                 <div>
-                  <label for="inputPassword" class="form-label">
+                  <label for="inputPassword" className="form-label">
                     Kata sandi
                   </label>
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="inputPassword"
                     placeholder="Masukkan kata sandi"
                   />
                 </div>
                 <div>
-                  <label for="inputPassword" class="form-label">
+                  <label for="inputPassword" className="form-label">
                     Konfirmasi password
                   </label>
                   <input
                     type="password"
-                    class="form-control"
+                    className="form-control"
                     id="inputPassword"
                     placeholder="Masukkan konfirmasi kata sandi"
                   />
                 </div>
             
-                <div class="d-grid gap-2">
-                  <button type="submit" class="btn btnCustom">
-                    <Link class="a" href="/loginkerja/login">
+                <div className="d-grid gap-2">
+                  <button type="submit" className="btn btnCustom">
+                    <Link className="a" href="/loginkerja/login">
                       Daftar
                     </Link>
                   </button>
                 </div>
-                <div class="text-center">
-                  <p class="text-muted">
+                <div className="text-center">
+                  <p className="text-muted">
                    Anda sudah punya akun?
-                    <Link class="ap" href="/loginkerja/login">
+                    <Link className="ap" href="/loginkerja/login">
                        Masuk disini
                     </Link>
                   </p>

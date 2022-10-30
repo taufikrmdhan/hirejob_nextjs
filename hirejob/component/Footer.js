@@ -5,10 +5,10 @@ import Image from "next/image";
 
 const Footer = () => {
   return (
-    <footer class="container-fluid bgFooter text-white p-5 ">
-    <div class="row">
-      <div class="col-md-4">
-        <div class="row">
+    <footer className="container-fluid bgFooter text-white p-5 ">
+    <div className="row">
+      <div className="col-md-4">
+        <div className="row">
           <Link className="mx-2" href="/">
             <Image src="/Group 978 1.png" width="150" height={45} alt="logo" />
           </Link>
