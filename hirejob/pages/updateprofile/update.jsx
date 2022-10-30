@@ -150,7 +150,6 @@ const Index = () => {
                   <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
                     <h4 className="mt-3">Pengalaman kerja</h4>
                     <hr />
-                    posisi, Nama perusahaan, bulan/tahun, Deskripsi singkat
                     <div className="col-md-12 my-2 mt-4">
                       <label for="posisi" className="form-label">
                         Posisi
@@ -264,7 +263,77 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                    upload gambar
+                    <div className="col-md-12 my-2 mt-4">
+                      <label for="upload" className="form-label">
+                        Upload
+                      </label>
+                      <div className="container custDashed text-muted">
+                        <div className="col-md-12 text-center my-5">
+                          <img src="/Vector.png" alt="" />
+                        </div>
+                        <div className="col-md-12 text-center my-2">
+                          <h5 className="text-muted">
+                            Drag & Drop untuk Upload Gambar Aplikasi Mobile
+                          </h5>
+                        </div>
+                        <div className="col-md-12 text-center my-3 mb-5">
+                          <p className="text-muted">
+                            Atau cari untuk mengupload file dari direktorimu.
+                          </p>
+                        </div>
+                        <div className="row d-flex justify-content-center align-items-center mb-5">
+                          <div className="col-md-6">
+                            <div className="row ms-5 ">
+                              <div className="col-md-4 mt-2 text-end">
+                                <img src="/ext.png" alt="" />
+                              </div>
+                              <div className="col-md-7 text-muted ">
+                                <div className="col-md-12">High-Res Image</div>
+                                <div className="col-md-12">PNG, JPG or GIF</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-md-6">
+                            <div className="row">
+                              <div className="col-md-4 mt-2 text-end">
+                                <img src="/sizerev.png" alt="" />
+                              </div>
+                              <div className="col-md-7 text-muted ">
+                                <div className="col-md-12">Size</div>
+                                <div className="col-md-12">1080x1920 or 600x800</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* <div class="mb-3">
+                        <div class="rectangle">
+                          <div>
+                            <img
+                              src="/assets/image/image.svg"
+                              alt=""
+                              class="imageAdd"
+                              id="customBtn"
+                            />
+                          </div>
+
+                          <h5
+                            class="text-muted"
+                            id="customBtn"
+                            onclick="{handleClick}"
+                          >
+                            Add image
+                          </h5>
+                        </div>
+                        <input
+                          type="file"
+                          ref="{hiddenFileInput}"
+                          id="formFile"
+                          onchange="{handleChange}"
+                          style="display: none"
+                        />
+                      </div> */}
+                    </div>
                     <hr />
                     <button type="button" className="btn btnAdd">
                       Tambah Portfolio
