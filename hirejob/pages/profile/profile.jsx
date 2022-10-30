@@ -3,7 +3,6 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "../../component/Footer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Index = () => {
   return (
@@ -35,6 +34,19 @@ const Index = () => {
                     <p>Web Designer</p>
                   </div>
                   <div className="col-md-12 my-2 mt-2">
+                    <div className="row">
+                      <div className="col-md-1">
+                        <i className="fa fa-map-marker text-muted"></i>
+                      </div>
+                      <div className="col-md-10">
+                        <p className="text-muted">Purwokerto, jawa tenga</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="col-md-12 my-2 mt-2">
+                    <p className="text-muted">Frelancer</p>
+                  </div>
+                  <div className="col-md-12 my-2 mt-2">
                     <p className="text-muted">
                       Lorem ipsum dolor sit amet consectetur adipisicing elit.
                       Voluptate dolorem pariatur dolor, provident qui laboriosam
@@ -42,9 +54,11 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="col-md-12 my-2">
-                    <button type="button" className="btn btnGrapeHere">
-                      Here
-                    </button>
+                    <Link className="" href="/updateprofile/update">
+                      <button type="button" className="btn btnGrapeHere">
+                        Here
+                      </button>
+                    </Link>
                   </div>
                   <div className="col-md-12 mt-4">
                     <h6>Skill</h6>
@@ -63,43 +77,27 @@ const Index = () => {
                   {/* email, instagram, github */}
                   <div className="col-md-12 mt-5">
                     <div className="row">
-                      <div className="col-md-3">
-                        {/* <FontAwesomeIcon icon={fa-instagram}/> */}
+                      <div className="col-md-1">
+                        <i className="fa fa-instagram text-muted"></i>
                       </div>
                       <div className="col-md-8">
-                        <p>Instagram</p>
+                        <p className="text-muted">taufik_rmdhan</p>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-3">
-                        <i className="fas fa-envelope"></i>
+                      <div className="col-md-1">
+                        <i className="fa fa-envelope text-muted"></i>
                       </div>
                       <div className="col-md-8">
-                        <p>Instagram</p>
+                        <p className="text-muted">@student.amikom.ac.id</p>
                       </div>
                     </div>
                     <div className="row">
-                      <div className="col-md-3">
-                        <i className="fas fa-envelope"></i>
+                      <div className="col-md-1">
+                        <i className="fa fa-github text-muted"></i>
                       </div>
                       <div className="col-md-8">
-                        <p>Instagram</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-3">
-                        <i className="fas fa-envelope"></i>
-                      </div>
-                      <div className="col-md-8">
-                        <p>Instagram</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-3">
-                        <i className="fas fa-envelope"></i>
-                      </div>
-                      <div className="col-md-8">
-                        <p>Instagram</p>
+                        <p className="text-muted">taufik_rmdhan</p>
                       </div>
                     </div>
                     {/* <div className="col-md-3">

@@ -6,8 +6,8 @@ import Image from "next/image";
 const Navbar = () => {
   return (
      <div className="container-fluid">
-        <nav class="navbar navbar-expand-lg bg-white">
-          <div class="container-fluid">
+        <nav className="navbar navbar-expand-lg bg-white">
+          <div className="container-fluid">
           <Link className="navbar-brand mx-5" href="/">
             <Image
               src="/Group 980 2.png"
@@ -17,7 +17,7 @@ const Navbar = () => {
             />
           </Link>
             <button
-              class="navbar-toggler"
+              className="navbar-toggler"
               type="button"
               data-bs-toggle="collapse"
               data-bs-target="#navbarText"
@@ -25,14 +25,14 @@ const Navbar = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
             >
-              <span class="navbar-toggler-icon"></span>
+              <span className="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
+            <div className="collapse navbar-collapse" id="navbarText">
+              <ul className="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+                <li className="nav-item">
+                  <Link className="nav-link active" aria-current="page" href="/home/home">
                     Home
-                  </a>
+                  </Link>
                 </li>
               </ul>
               <div className="dropdown">
@@ -48,7 +48,7 @@ const Navbar = () => {
                     src="/Group 797.png"
                     width="20"
                     alt=""
-                    class="mx-4"
+                    className="mx-4"
                   />
                   <img
                     src="/btnNotifications.png"
@@ -58,13 +58,13 @@ const Navbar = () => {
                   />
                 </a>
               </div>
-              <Image
+              <Link href="/profile/profile"><Image
                   src="/foto ktm.png"
                   width={40}
                   height={45}
                   className="mobileProfileNavbar mx-5 rounded-circle customBorder"
                   alt="profile image"
-                />
+                /></Link>
             </div>
           </div>
         </nav>

@@ -29,14 +29,18 @@ const Index = () => {
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarText">
-              <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
-              </ul>
-              <button type="button" className="btn btnGrape2 me-3 px-3 ">
-                Masuk
-              </button>
+              <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0"></ul>
+              <Link className="" href="/loginrekrut/login">
+                <button
+                  type="button"
+                  className="btn btnGrape2 me-3 px-3 "
+                >Masuk</button>
+              </Link>
+              <Link className="" href="/registerrekrut/register">
               <button type="button" className="btn btnGrape me-5 px-3">
                 Daftar
               </button>
+              </Link>
             </div>
           </div>
         </nav>

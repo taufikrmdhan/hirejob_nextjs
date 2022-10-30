@@ -31,14 +31,16 @@ const Index = () => {
             <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">
+                  <Link class="nav-link active" aria-current="page" href="/home/home">
                     Home
-                  </a>
+                  </Link>
                 </li>
               </ul>
-              <button type="button" className="btn btnGrape mx-5">
-                Profile
-              </button>
+              <Link href="/profile/profile">
+                <button type="button" className="btn btnGrape mx-5">
+                  Profile
+                </button>
+              </Link>
             </div>
           </div>
         </nav>
@@ -197,7 +199,12 @@ const Index = () => {
               </div>
               <div class="row row-cols-1 row-cols-md-3 g-4 position-relative overflow">
                 <div className="sliderNav sliderNavLeft">
-                  <button type="button" className="number-list d-flex align-items-center justify-content-center">&#x3c;</button>
+                  <button
+                    type="button"
+                    className="number-list d-flex align-items-center justify-content-center"
+                  >
+                    &#x3c;
+                  </button>
                 </div>
                 <div class="col text-center">
                   <div class="card h-100 shadow-lg border border-0">
@@ -254,7 +261,12 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="sliderNav sliderNavRight">
-                  <button type="button" className="number-list d-flex align-items-center justify-content-center">&#x3e;</button>
+                  <button
+                    type="button"
+                    className="number-list d-flex align-items-center justify-content-center"
+                  >
+                    &#x3e;
+                  </button>
                 </div>
               </div>
             </div>

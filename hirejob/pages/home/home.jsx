@@ -99,9 +99,11 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="col-md-2 d-flex align-items-center justify-content-center">
-                    <button type="button" className="btn btnGrape mx-1 my-1">
+                    <Link href="/profile/profile">
+                      <button type="button" className="btn btnGrape mx-1 my-1">
                       Lihat Profile
                     </button>
+                    </Link>
                   </div>
                   <hr />
                 </div>
@@ -135,9 +137,11 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="col-md-2 d-flex align-items-center justify-content-center">
-                    <button type="button" className="btn btnGrape mx-1 my-1">
+                    <Link href="/profile/profile">
+                      <button type="button" className="btn btnGrape mx-1 my-1">
                       Lihat Profile
                     </button>
+                    </Link>
                   </div>
                   <hr />
                 </div>
@@ -171,9 +175,11 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="col-md-2 d-flex align-items-center justify-content-center">
-                    <button type="button" className="btn btnGrape mx-1 my-1">
+                    <Link href="/profile/profile">
+                      <button type="button" className="btn btnGrape mx-1 my-1">
                       Lihat Profile
                     </button>
+                    </Link>
                   </div>
                   <hr />
                 </div>
@@ -207,9 +213,11 @@ const Index = () => {
                     </div>
                   </div>
                   <div className="col-md-2 d-flex align-items-center justify-content-center">
-                    <button type="button" className="btn btnGrape mx-1 my-1">
+                    <Link href="/profile/profile">
+                      <button type="button" className="btn btnGrape mx-1 my-1">
                       Lihat Profile
                     </button>
+                    </Link>
                   </div>
                   <hr />
                 </div>

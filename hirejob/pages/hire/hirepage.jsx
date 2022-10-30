@@ -36,7 +36,14 @@ const Index = () => {
                     </p>
                   </div>
                   <div className="col-md-12 my-2 mt-2">
-                    <p className="text-muted">Purwokerto, jawa tenga</p>
+                    <div className="row">
+                      <div className="col-md-1">
+                        <i className="fa fa-map-marker"></i>
+                      </div>
+                      <div className="col-md-10">
+                        <p className="text-muted">Purwokerto, jawa tenga</p>
+                      </div>
+                    </div>
                   </div>
                   <div className="col-md-12 my-2 mt-2">
                     <p className="text-muted">

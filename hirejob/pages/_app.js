@@ -3,6 +3,7 @@ import "../styles/globals.css";
 
 import "../styles/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import 'font-awesome/css/font-awesome.min.css';
 import Layout from "../layouts/layout";
 import Layfooter from "../layouts/footerlay";
 

@@ -200,6 +200,19 @@ form div p .ap{
   .upProfileDiri{
     margin-top: -200px !important;
   }
+
+  .upProfilePerusahaan{
+    margin-top: -60px !important;
+  }
+
+  /* .custUbah{ */
+    /* posisi kanan bawah */
+    /* position: absolute;
+    bottom: 0;
+    right: 0;
+    margin-right: 20px;
+    margin-bottom: 20px; */
+  /* } */
   @media screen and (max-width: 600px) {
     /* .upProfile{
         margin-top: -100px !important;
@@ -208,7 +221,10 @@ form div p .ap{
         margin-top: 0px !important;
     }
   }
-  
+  .aa{
+    text-decoration: none;
+    color: #5E50A1 !important;
+  }
   /* .marginNegatif{
     margin-top: -100px !important;
   } */

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Sidepage from "../../component/sidePage";
+import Link from "next/link";
 
 
 const Index = () => {
@@ -52,15 +53,15 @@ const Index = () => {
               </div>
               <div className="d-grid gap-2">
                 <button type="submit" className="btn btnCustom">
-                  <a className="a" href="/landingPage.html">
+                  <Link className="a" href="/landingpage/afterlogin">
                     Masuk
-                  </a>
+                  </Link>
                 </button>
               </div>
               <div class="text-center">
               <p class="text-muted">
                 Anda belum punya akun?
-                <a class="ap" href="/login.html"> Daftar disini</a>
+                <Link class="ap" href="/registerkerja/register"> Daftar disini</Link>
               </p>
             </div>
             </form>
