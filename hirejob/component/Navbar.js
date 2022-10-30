@@ -1,6 +1,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
   return (
@@ -8,9 +9,10 @@ const Navbar = () => {
         <nav class="navbar navbar-expand-lg bg-white">
           <div class="container-fluid">
           <Link className="navbar-brand mx-5" href="/">
-            <img
+            <Image
               src="/Group 980 2.png"
               width="100"
+              height={30}
               alt="logo"
             />
           </Link>
@@ -56,9 +58,10 @@ const Navbar = () => {
                   />
                 </a>
               </div>
-              <img
+              <Image
                   src="/foto ktm.png"
-                  width="40"
+                  width={40}
+                  height={45}
                   className="mobileProfileNavbar mx-5 rounded-circle customBorder"
                   alt="profile image"
                 />

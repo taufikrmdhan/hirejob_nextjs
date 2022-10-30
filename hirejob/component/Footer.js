@@ -1,6 +1,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 const Footer = () => {
   return (
@@ -9,7 +10,7 @@ const Footer = () => {
       <div class="col-md-4">
         <div class="row">
           <Link className="mx-2" href="/">
-            <img src="/Group 978 1.png" width="150" alt="logo" />
+            <Image src="/Group 978 1.png" width="150" height={45} alt="logo" />
           </Link>
           <p className="mx-2 my-5">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. In

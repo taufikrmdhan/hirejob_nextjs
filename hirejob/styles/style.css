@@ -149,6 +149,10 @@ form div p .ap{
     overflow: hidden;
   }
 
+  .customMainProfile {
+    margin-top: 55px;
+  }
+
   @media screen and (max-width: 600px) {
     .btnStart{
         height: 50px;
@@ -165,3 +169,46 @@ form div p .ap{
   .grape{
     background-color: #5E50A1;
   }
+
+  .btnGrapeHere{
+    background-color: #5E50A1 !important;
+    color: white !important;
+    width: 100%;
+  }
+
+  .bgUngu{
+    background-color: #5E50A1 !important;
+    width: 100%;
+    height: 250px;
+    padding-bottom: 30px;
+  }
+
+  .btnAdd{
+    background-color: white !important;
+    color: #FBB017 !important;
+    width: 100%;
+    border: 1px solid #FBB017 !important;
+  }
+  .btnAdd:hover{
+    background-color: #FBB017 !important;
+    color: white !important;
+  }
+
+  .upProfile{
+    margin-top: -200px !important;
+  }
+  .upProfileDiri{
+    margin-top: -200px !important;
+  }
+  @media screen and (max-width: 600px) {
+    /* .upProfile{
+        margin-top: -100px !important;
+    } */
+    .upProfileDiri{
+        margin-top: 0px !important;
+    }
+  }
+  
+  /* .marginNegatif{
+    margin-top: -100px !important;
+  } */
