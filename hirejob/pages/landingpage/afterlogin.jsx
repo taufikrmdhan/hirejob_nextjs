@@ -2,7 +2,8 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-// import { protectedRoute } from "../../HOC/protectionRoute";
+import { protectedRoute } from "../../HOC/protectionRoute";
+import Footer from "../../component/Footer";
 
 const Index = () => {
   return (
@@ -293,9 +294,10 @@ const Index = () => {
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 };
 Index.layout = "F";
-// export default protectedRoute(Index);
-export default Index;
+export default protectedRoute(Index);
+// export default Index;
