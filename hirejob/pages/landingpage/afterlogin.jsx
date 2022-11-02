@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+// import { protectedRoute } from "../../HOC/protectionRoute";
 
 const Index = () => {
   return (
@@ -296,4 +297,5 @@ const Index = () => {
   );
 };
 Index.layout = "F";
+// export default protectedRoute(Index);
 export default Index;

@@ -1,17 +1,27 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import Head from "next/head";
 import Image from "next/image";
 // import {useSearchParams} from "react-router-dom";
 import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
+import { useRouter } from "next/router";
 
-const Index = () => {
-  //GET USER DATA BY ID
-  const [user, setUser] = useState([]);
+const Detail = () => {
+  const router = useRouter();
+  const { id } = router.query;
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    
+    axios
+      .get(`http://localhost:3001/user/list/${id}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setData(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (
@@ -27,96 +37,109 @@ const Index = () => {
           <div className="col-md-12 bg-light marginNegatif">
             <div className="container">
               <div className="row ">
-                <div className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile">
-                  <div className="col-md-12 my-2">
-                    <img
-                      src="/nnzkZNYWHaU.png"
-                      width="100"
-                      alt=""
-                      className="mx-auto d-block rounded-circle"
-                    />
-                  </div>
-                  <div className="col-md-12 my-2 mt-4">
-                    <h5>Jon</h5>
-                  </div>
-                  <div className="col-md-12 my-2 mt-2">
-                    <p>Web Designer</p>
-                  </div>
-                  <div className="col-md-12 my-2 mt-2">
-                    <div className="row">
-                      <div className="col-md-1">
-                        <i className="fa fa-map-marker text-muted"></i>
-                      </div>
-                      <div className="col-md-10">
-                        <p className="text-muted">Purwokerto, jawa tenga</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="col-md-12 my-2 mt-2">
-                    <p className="text-muted">Frelancer</p>
-                  </div>
-                  <div className="col-md-12 my-2 mt-2">
-                    <p className="text-muted">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Voluptate dolorem pariatur dolor, provident qui laboriosam
-                      corrupti.
-                    </p>
-                  </div>
-                  <div className="col-md-12 my-2">
-                    <Link className="" href="/updateprofile/update">
-                      <button type="button" className="btn btnGrapeHere">
-                        Here
-                      </button>
-                    </Link>
-                  </div>
-                  <div className="col-md-12 mt-4">
-                    <h6>Skill</h6>
-                  </div>
-                  <div className="col-md-12">
-                    <button type="button" className="btn btnCustom">
-                      tes
-                    </button>
-                    <button type="button" className="btn btnCustom ms-2">
-                      tes
-                    </button>
-                    <button type="button" className="btn btnCustom ms-2">
-                      tes
-                    </button>
-                  </div>
-                  {/* email, instagram, github */}
-                  <div className="col-md-12 mt-5">
-                    <div className="row">
-                      <div className="col-md-1">
-                        <i className="fa fa-instagram text-muted"></i>
-                      </div>
-                      <div className="col-md-8">
-                        <p className="text-muted">taufik_rmdhan</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-1">
-                        <i className="fa fa-envelope text-muted"></i>
-                      </div>
-                      <div className="col-md-8">
-                        <p className="text-muted">@student.amikom.ac.id</p>
-                      </div>
-                    </div>
-                    <div className="row">
-                      <div className="col-md-1">
-                        <i className="fa fa-github text-muted"></i>
-                      </div>
-                      <div className="col-md-8">
-                        <p className="text-muted">taufik_rmdhan</p>
-                      </div>
-                    </div>
-                    {/* <div className="col-md-3">
-                                <i className="fab fa-instagram"></i>
+                {Object.keys(data).length ? (
+                  data.isLoading ? (
+                    <p>Loading...</p>
+                  ) : (
+                    data.map((item) => {
+                      return (
+                        <div className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile">
+                          <div className="col-md-12 my-2">
+                            <img
+                              src="/nnzkZNYWHaU.png"
+                              width="100"
+                              alt=""
+                              className="mx-auto d-block rounded-circle"
+                            />
+                          </div>
+                          <div className="col-md-12 my-2 mt-4">
+                            <h5>{item.name}</h5>
+                          </div>
+                          <div className="col-md-12 my-2 mt-2">
+                            <p>{item.job_desk}</p>
+                          </div>
+                          <div className="col-md-12 my-2 mt-2">
+                            <div className="row">
+                              <div className="col-md-1">
+                                <i className="fa fa-map-marker text-muted"></i>
+                              </div>
+                              <div className="col-md-10">
+                                <p className="text-muted">{item.city}</p>
+                              </div>
                             </div>
-                            <div className="col-md-3">
-                                <i className="fab fa-github"></i>
-                            </div> */}
-                  </div>
-                </div>
+                          </div>
+                          <div className="col-md-12 my-2 mt-2">
+                            <p className="text-muted">{item.title}</p>
+                          </div>
+                          <div className="col-md-12 my-2 mt-2">
+                            <p className="text-muted">{item.description}</p>
+                          </div>
+                          <div className="col-md-12 my-2">
+                            <Link className="" href="/updateprofile/update">
+                              <button
+                                type="button"
+                                className="btn btnGrapeHere"
+                              >
+                                Here
+                              </button>
+                            </Link>
+                          </div>
+                          <div className="col-md-12 mt-4">
+                            <h6>Skill</h6>
+                          </div>
+                          <div className="col-md-12">
+                            <button type="button" className="btn btnCustom">
+                              {item.skill}
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btnCustom ms-2"
+                            >
+                              {item.skill}
+                            </button>
+                            <button
+                              type="button"
+                              className="btn btnCustom ms-2"
+                            >
+                              {item.skill}
+                            </button>
+                          </div>
+                          {/* email, instagram, github */}
+                          <div className="col-md-12 mt-5">
+                            <div className="row">
+                              <div className="col-md-1">
+                                <i className="fa fa-instagram text-muted"></i>
+                              </div>
+                              <div className="col-md-8">
+                                <p className="text-muted">{item.instagram}</p>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-md-1">
+                                <i className="fa fa-envelope text-muted"></i>
+                              </div>
+                              <div className="col-md-8">
+                                <p className="text-muted">
+                                  @student.amikom.ac.id
+                                </p>
+                              </div>
+                            </div>
+                            <div className="row">
+                              <div className="col-md-1">
+                                <i className="fa fa-github text-muted"></i>
+                              </div>
+                              <div className="col-md-8">
+                                <p className="text-muted">{item.github}</p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  )
+                ) : null
+                }
+
                 <div className="col-md-8 bg-white mb-5 ms-4 rounded upProfileDiri">
                   <p className="mt-3">
                     <a
@@ -271,5 +294,5 @@ const Index = () => {
     </>
   );
 };
-Index.layout = "L";
-export default Index;
+Detail.layout = "L";
+export default Detail;

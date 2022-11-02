@@ -194,6 +194,17 @@ form div p .ap{
     color: white !important;
   }
 
+  .btnDelete{
+    background-color: white !important;
+    color: red !important;
+    width: 100%;
+    border: 1px solid #FBB017 !important;
+  }
+  .btnDelete:hover{
+    background-color: red !important;
+    color: white !important;
+  }
+
   .upProfile{
     margin-top: -200px !important;
   }

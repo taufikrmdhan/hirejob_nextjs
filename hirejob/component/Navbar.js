@@ -58,9 +58,9 @@ const Navbar = () => {
                   />
                 </a>
               </div>
-              <Link href="/profile/profile"><Image
-                  src="/foto ktm.png"
-                  width={40}
+              <Link href="/updateprofile/update"><Image
+                  src="/nnzkZNYWHaU.png"
+                  width={45}
                   height={45}
                   className="mobileProfileNavbar mx-5 rounded-circle customBorder"
                   alt="profile image"

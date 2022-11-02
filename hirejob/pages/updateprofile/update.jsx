@@ -1,10 +1,93 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "../../component/Footer";
+import axios from "axios";
 
 const Index = () => {
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("data"));
+    const id_user = data.id_user;
+    axios
+      .get(`http://localhost:3001/user/list/${id_user}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setUser(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const data = JSON.parse(localStorage.getItem("data"));
+    const id_user = data.id_user;
+    console.log(id_user);
+    let formData = new FormData(e.target);
+    formData.append("id_user", id_user);
+    axios
+      .put(`http://localhost:3001/user/update/${id_user}`, formData)
+      .then((res) => {
+        console.log(res);
+        alert("Update Success");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+
+    const deleteRow = () => {
+      const data = JSON.parse(localStorage.getItem("data"));
+      const id_user = data.id_user;
+      axios
+        .delete(`http://localhost:3001/user/delete/${id_user}`)
+        .then((res) => {
+          console.log(res);
+          alert("Delete Success");
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      // axios
+      //   .delete(`${process.env.REACT_APP_BACKEND_URL}/recipe/delete/${id_recipe}`)
+      //   .then((res) => {
+      //     console.log(res);
+      //     console.log(res.data);
+  
+      //     const posts = recipe.filter((item) => item.id_recipe !== id_recipe);
+      //     setUser({ data: posts });
+      //   });
+    };
+
+  const hiddenFileInput = useRef(null);
+  const handleClick = (event) => {
+    console.log(event);
+    hiddenFileInput.current.click();
+  };
+  const handleChange = (event) => {
+    const fileUploaded = event.target.files[0];
+    console.log(fileUploaded);
+  };
+
+
+
+    // axios
+    //   .put(`http://localhost:3001/user/update/${id_user}`, formData)
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //   });
+
+
+  // useEffect(() => {
+  //   console.log(data.id_user);
+  // }, []);
   return (
     <>
       <div>
@@ -29,28 +112,92 @@ const Index = () => {
                       />
                       {/* edit */}
                       <div className="col-md-12 text-center ">
-                        <button className="btn text-muted">&#9998; Edit</button>
+                        <button
+                          className="btn text-muted"
+                          onClick={handleClick}
+                        >
+                          &#9998; Edit
+                        </button>
+                        <input
+                          type="file"
+                          ref={hiddenFileInput}
+                          id="formFile"
+                          onChange={(e) => handleChange(e)}
+                          style={{ display: "none" }}
+                        />
                       </div>
                     </div>
                     <div className="col-md-12 my-2 mt-4">
-                      <h5>Louis Tomilson</h5>
+                      <h5>
+                        {
+                          Object.keys(user).length ?
+                          user.isLoading ? (
+                            <p>Loading...</p>
+                          ) : (
+                            user.map((data) => {
+                                  return data.name;
+                                })
+                          )
+                          :
+                          null
+                        }
+                      </h5>
                     </div>
                     <div className="col-md-12 my-2 mt-2">
-                      <p>Web Designer</p>
+                      <p>
+                      {
+                          Object.keys(user).length ?
+                          user.isLoading ? (
+                            <p>Loading...</p>
+                          ) : (
+                            user.map((data) => {
+                                  return data.job_desk;
+                                })
+                          )
+                          :
+                          null
+                        }
+                      </p>
                     </div>
-                    {/* alamat */}
+                    
                     <div className="col-md-12 my-2 mt-2">
                       <div className="row">
                         <div className="col-md-1">
                           <i className="fa fa-map-marker"></i>
                         </div>
                         <div className="col-md-10">
-                          <p className="text-muted">Purwokerto, jawa tenga</p>
+                          <p className="text-muted">
+                          {
+                          Object.keys(user).length ?
+                          user.isLoading ? (
+                            <p>Loading...</p>
+                          ) : (
+                            user.map((data) => {
+                                  return data.city;
+                                })
+                          )
+                          :
+                          null
+                        }
+                          </p>
                         </div>
                       </div>
                     </div>
                     <div className="col-md-12 my-2 mt-2">
-                      <p className="text-muted">Frelancer</p>
+                      <p className="text-muted">
+                      {
+                          Object.keys(user).length ?
+                          user.isLoading ? (
+                            <p>Loading...</p>
+                          ) : (
+                            user.map((data) => {
+                                  return data.description;
+                                })
+                          )
+                          :
+                          null
+                        }
+                      </p>
                     </div>
                   </div>
                   <div className="col-md-12">
@@ -63,66 +210,167 @@ const Index = () => {
                   </div>
                 </div>
                 <div className="col-md-8 upProfileDiri">
-                  <div className="col-md-12 bg-white mb-5 ms-4 p-3 rounded">
-                    <h4 className="mt-3">Data diri</h4>
-                    <hr />
-                    <div className="col-md-12 my-2 mt-4">
-                      <label for="name" className="form-label">
-                        Nama lengkap
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="name"
-                        placeholder="Nama"
-                      />
-                    </div>
+                  <form onSubmit={(e) => handleUpdate(e)}>
+                    <div className="col-md-12 bg-white mb-5 ms-4 p-3 rounded">
+                      <h4 className="mt-3">Data diri</h4>
+                      <hr />
+                      <div className="col-md-12 my-2 mt-4">
+                        <label for="name" className="form-label">
+                          Nama lengkap
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="name"
+                          placeholder="Nama"
+                          name="name"
+                          defaultValue={
+                            Object.keys(user).length ?
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                    return data.name;
+                                  })
+                            )
+                            :
+                            null
+                          }
+                        />
+                      </div>
 
-                    <div className="col-md-12 my-2 mt-4">
-                      <label for="jobdesk" className="form-label">
-                        Jobdesk
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="jobdesk"
-                        placeholder="Jobdesk"
-                      />
+                      <div className="col-md-12 my-2 mt-4">
+                        <label for="jobdesk" className="form-label">
+                          Jobdesk
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="jobdesk"
+                          placeholder="Jobdesk"
+                          name="job_desk"
+                          defaultValue=                      {
+                            Object.keys(user).length ?
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                    return data.job_desk;
+                                  })
+                            )
+                            :
+                            null
+                          }
+                        />
+                      </div>
+                      <div className="col-md-12 my-2 mt-4">
+                        <label for="domisili" className="form-label">
+                          Domisili
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="domisili"
+                          placeholder="Domisili"
+                          name="city"
+                          defaultValue=                      {
+                            Object.keys(user).length ?
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                    return data.city;
+                                  })
+                            )
+                            :
+                            null
+                          }
+                        />
+                      </div>
+                      <div className="col-md-12 my-2 mt-4">
+                        <label for="tempatKerja" className="form-label">
+                          Tempat kerja
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="tempatKerja"
+                          placeholder="Tempat kerja"
+                          name="city"
+                          defaultValue=                      {
+                            Object.keys(user).length ?
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                    return data.city;
+                                  })
+                            )
+                            :
+                            null
+                          }
+                        />
+                      </div>
+                      <div className="col-md-12 my-2 mt-4">
+                        <label for="deskripsi" className="form-label">
+                          Deskripsi singkat
+                        </label>
+                        <textarea
+                          className="form-control"
+                          id="deskripsi"
+                          rows="5"
+                          placeholder="Tuliskan deskripsi singkat"
+                          name="description"
+                          defaultValue= {
+                            Object.keys(user).length ?
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                    return data.description;
+                                  })
+                            )
+                            :
+                            null
+                          }
+                        ></textarea>
+                      </div>
+                      <div className="col-md-8 mt-3 mb-3">
+                          <label for="skill" className="form-label">
+                            Skill
+                          </label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            id="skill"
+                            name="skill"
+                            placeholder="Java"
+                            defaultValue=
+                              {
+                                Object.keys(user).length ?
+                                user.isLoading ? (
+                                  <p>Loading...</p>
+                                ) : (
+                                  user.map((data) => {
+                                        return data.description;
+                                      })
+                                )
+                                :
+                                null
+                              }
+                            
+                          />
+                        </div>
+                      <button type="submit" className="btn btnAdd">
+                        Update
+                      </button>
+                      <div>
+                        <button type="button" className="btn btnDelete mt-2" onClick={(e) => deleteRow(e)}>
+                          Delete data diri
+                        </button>
+                      </div>
                     </div>
-                    <div className="col-md-12 my-2 mt-4">
-                      <label for="domisili" className="form-label">
-                        Domisili
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="domisili"
-                        placeholder="Domisili"
-                      />
-                    </div>
-                    <div className="col-md-12 my-2 mt-4">
-                      <label for="tempatKerja" className="form-label">
-                        Tempat kerja
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="tempatKerja"
-                        placeholder="Tempat kerja"
-                      />
-                    </div>
-                    <div className="col-md-12 my-2 mt-4">
-                      <label for="deskripsi" className="form-label">
-                        Deskripsi singkat
-                      </label>
-                      <textarea
-                        className="form-control"
-                        id="deskripsi"
-                        rows="5"
-                        placeholder="Tuliskan deskripsi singkat"
-                      ></textarea>
-                    </div>
-                  </div>
+                  </form> 
                   <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
                     <h4 className="mt-3">Skill</h4>
                     <hr />
@@ -269,8 +517,15 @@ const Index = () => {
                       </label>
                       <div className="container custDashed text-muted">
                         <div className="col-md-12 text-center my-5">
-                          <img src="/Vector.png" alt="" />
+                          <img src="/Vector.png" alt="" onClick={handleClick} />
                         </div>
+                        <input
+                          type="file"
+                          ref={hiddenFileInput}
+                          id="formFile"
+                          onChange={(e) => handleChange(e)}
+                          style={{ display: "none" }}
+                        />
                         <div className="col-md-12 text-center my-2">
                           <h5 className="text-muted">
                             Drag & Drop untuk Upload Gambar Aplikasi Mobile
@@ -300,39 +555,14 @@ const Index = () => {
                               </div>
                               <div className="col-md-7 text-muted ">
                                 <div className="col-md-12">Size</div>
-                                <div className="col-md-12">1080x1920 or 600x800</div>
+                                <div className="col-md-12">
+                                  1080x1920 or 600x800
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                      {/* <div class="mb-3">
-                        <div class="rectangle">
-                          <div>
-                            <img
-                              src="/assets/image/image.svg"
-                              alt=""
-                              class="imageAdd"
-                              id="customBtn"
-                            />
-                          </div>
-
-                          <h5
-                            class="text-muted"
-                            id="customBtn"
-                            onclick="{handleClick}"
-                          >
-                            Add image
-                          </h5>
-                        </div>
-                        <input
-                          type="file"
-                          ref="{hiddenFileInput}"
-                          id="formFile"
-                          onchange="{handleChange}"
-                          style="display: none"
-                        />
-                      </div> */}
                     </div>
                     <hr />
                     <button type="button" className="btn btnAdd">
