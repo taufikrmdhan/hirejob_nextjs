@@ -1,6 +1,7 @@
 const express = require("express");
 const {
   list,
+  listAll,
   detail,
   find,
   insertPortofolio,
@@ -18,7 +19,8 @@ const jwtAuth = require("../middleware/jwtAuth");
 const { isAdmin, isCustomer } = require("../middleware/auth");
 
 router
-  .get("/portofolio", list)
+  .get("/portofolio", listAll)
+  .get("/portofolio/:id_user", list)
   .get("/portofolio/detail/:id_portofolio", detail)
   // .post("/flight/find/:page", find)
   .post("/portofolio/add", upload, insertPortofolio)

@@ -3,10 +3,10 @@ const { success, failed } = require("../helper/response");
 
 const portofolioController = {
   insertPortofolio: (req, res) => {
-    const { title, link } = req.body;
+    const { title, link, id_user } = req.body;
     const image = req.file.filename;
     portofolioModel
-      .insertPortofolio(title, image, link)
+      .insertPortofolio(title, image, link, id_user)
       .then((result) => {
         res.json({
           message: "success insert data",
@@ -18,8 +18,19 @@ const portofolioController = {
       });
   },
   list: (req, res) => {
+    const id_user = req.params.id_user;
     portofolioModel
-      .getAllPortofolio()
+      .getAllPortofolio(id_user)
+      .then((result) => {
+        success(res, result.rows, "success", "Get All Flight List Success");
+      })
+      .catch((err) => {
+        failed(res, err.message, "failed", "Failed to get all flight list");
+      });
+  },
+  listAll: (req, res) => {
+    portofolioModel
+      .getAllPortofolioAll()
       .then((result) => {
         success(res, result.rows, "success", "Get All Flight List Success");
       })

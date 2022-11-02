@@ -27,7 +27,20 @@ const userModel = {
         }
       );
     }),
-  list: (limit, offset) =>
+//   list: (sort, asc, limit, offset) =>
+//     new Promise((resolve, reject) => {
+//       db.query(
+//         `SELECT * FROM users order by ${sort} ${asc} LIMIT ${limit} OFFSET ${offset}`,
+//         (err, result) => {
+//           if (err) {
+//             reject(err);
+//           } else {
+//             resolve(result);
+//           }
+//         }
+//       );
+//     }),
+list: (limit, offset) =>
     new Promise((resolve, reject) => {
       db.query(
         `SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`,
@@ -56,6 +69,20 @@ const userModel = {
     });
   },
 
+  listUserByName: (name) => {
+	return new Promise((resolve, reject) => {
+	  db.query(
+		`
+		SELECT * FROM users WHERE lower(name) LIKE lower ('%${name}%')`
+	  )
+		.then((response) => {
+		  resolve(response);
+		})
+		.catch((error) => {
+		  reject(error);
+		});
+	});
+  },
   updateUser: (
     id_user,
     name,

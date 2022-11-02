@@ -17,12 +17,39 @@ const userController = {
       });
   },
 
+    // getAllUser: (req, res) => {
+    //   const limit = parseInt(req.query.limit) || 3;
+    //   const page = parseInt(req.query.page) || 1;
+    //   const offset = (page - 1) * limit;
+  	// const sort = req.query.sort;
+  	// const asc = req.query.asc;
+    //   userModel
+    //     .list(limit, offset, sort, asc)
+    //     .then((result) => {
+    //       success(res, result.rows, "success", "success get data");
+    //     })
+    //     .catch((err) => {
+    //       failed(res, err, "failed", "failed get data");
+    //     });
+    // },
   getAllUser: (req, res) => {
-    const limit = parseInt(req.query.limit) || 3;
+    const limit = parseInt(req.query.limit) || 5;
     const page = parseInt(req.query.page) || 1;
     const offset = (page - 1) * limit;
     userModel
       .list(limit, offset)
+      .then((result) => {
+        success(res, result.rows, "success", "success get data");
+      })
+      .catch((err) => {
+        failed(res, err, "failed", "failed get data");
+      });
+  },
+
+  getUserByName: (req, res) => {
+    const name = req.params.name;
+    userModel
+      .listUserByName(name)
       .then((result) => {
         success(res, result.rows, "success", "success get data");
       })
@@ -80,8 +107,20 @@ const userController = {
                   {
                     token,
                     data: {
+                      id_user: user.id_user,
                       email: user.email,
-                      nama: user.nama,
+                      name: user.name,
+                      phone: user.phone,
+                      image: user.image,
+                      job_desk: user.job_desk,
+                      title: user.title,
+                      city: user.city,
+                      skill: user.skill,
+                      instagram: user.instagram,
+                      github: user.github,
+                      gitlab: user.gitlab,
+                      portofolio: user.portofolio,
+                      description: user.description,
                     },
                   },
                   token,
@@ -101,30 +140,58 @@ const userController = {
       });
   },
   updateUser: (req, res) => {
-	const id_user = req.params.id_user;
-	const { name, email, phone, job_desk, title, city, skill, instagram, github, gitlab, portofolio, description  } = req.body;
-	const image = req.file ? req.file.filename : "default.png";
-	userModel
-	  .updateUser(id_user, name, email, phone, job_desk, title, city, skill, instagram, github, gitlab, portofolio, image, description)
-	  .then((result) => {
-		success(res, result.rowCount, "success", "success update user");
-	  })
-	  .catch((err) => {
-		failed(res, err.message, "failed", "failed update user");
-	  });
+    const id_user = req.params.id_user;
+    const {
+      name,
+      email,
+      phone,
+      job_desk,
+      title,
+      city,
+      skill,
+      instagram,
+      github,
+      gitlab,
+      portofolio,
+      description,
+    } = req.body;
+    const image = req.file ? req.file.filename : "default.png";
+    userModel
+      .updateUser(
+        id_user,
+        name,
+        email,
+        phone,
+        job_desk,
+        title,
+        city,
+        skill,
+        instagram,
+        github,
+        gitlab,
+        portofolio,
+        image,
+        description
+      )
+      .then((result) => {
+        success(res, result.rowCount, "success", "success update user");
+      })
+      .catch((err) => {
+        failed(res, err.message, "failed", "failed update user");
+      });
   },
 
   deleteUser: (req, res) => {
-  	const id_user = req.params.id_user;
+    const id_user = req.params.id_user;
 
-  	userModel
-  		.deleteUser(id_user)
-  		.then((result) => {
-  			res.json(result);
-  		})
-  		.catch((error) => {
-  			res.json(error);
-  		});
+    userModel
+      .deleteUser(id_user)
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((error) => {
+        res.json(error);
+      });
   },
 };
 
