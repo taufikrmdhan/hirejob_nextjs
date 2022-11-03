@@ -10,7 +10,7 @@
 //   try {
 //     const res = await axios({
 //       method: "GET",
-//       url: "http://localhost:3001/user/list",
+//       url: "${process.env.NEXT_PUBLIC_API_URL}/user/list",
 //     });
 //     console.log(res.data);
 //     return {
@@ -113,7 +113,7 @@
 //                       <div className="row g-0">
 //                         <div className="col-md-2 d-flex align-items-center justify-content-center">
 //                           <img
-//                             src={`http://localhost:3001/${item.image}`}
+//                             src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
 //                             width={150}
 //                             // height={100}
 //                             className="img-fluid rounded-circle"
@@ -225,6 +225,9 @@ const Index = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [name, setName] = useState("");
 
+  const [sort, setSort] = useState("id_user");
+  const [asc, setAsc] = useState("asc");
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (name != "") {
@@ -236,7 +239,7 @@ const Index = () => {
           setData(res.data);
           if (res.data.length === 0) {
             alert("Data tidak ditemukan");
-          }else{
+          } else {
             router.push(`/profile/profile/${name}`);
           }
           // if (res.data.length >= 0) {
@@ -244,30 +247,75 @@ const Index = () => {
           // } else {
           //   alert("data tidak ada");
           // }
-        }
-        )
+        })
         .catch((err) => {
           console.log(err);
-        }
-        );
+        });
     }
   };
   // add parameter page limit
-  useEffect((page = currentPage, limit = 4) => {
+  useEffect(() => {
+    getData(sort, asc,3, currentPage);
+  }, [sort, asc, currentPage]);
+
+  const getData = (sort, asc, limit, page) => {
     axios
       .get(
-        `http://localhost:3001/user/list?limit=${limit}${
+        `${
+          process.env.NEXT_PUBLIC_API_URL
+        }/user/list?sort=${sort}&asc=${asc}&limit=${limit}${
           page ? `&page=${page}` : ""
         }`
       )
       .then((res) => {
+        console.log(res.data);
         setData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  };
 
+//   const NextPage = () => {
+//     setPage(page + 1);
+//     getData(sort, asc, 3, page);
+//   };
+// const PreviousPage = () => {
+//     if (page > 1) {
+//       setPage(page - 1);
+//       getData(sort, asc, 3, page - 1);
+//     }
+//   };
+
+  const handleNext = () => {
+      setCurrentPage(currentPage + 1);
+      getData(sort, asc, 3, currentPage + 1);
+  };
+
+  const handlePrevious = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+      getData(sort, asc, 3, currentPage - 1);
+    }
+  };
+
+  const handleSorting = () => {
+    if (sort == "id_user") {
+      setSort("name");
+    } else {
+      setSort("id_user");
+    }
+    getData(sort, asc, 3, currentPage);
+  };
+
+  const handleAsc = () => {
+    if (asc == "asc") {
+      setAsc("desc");
+    } else {
+      setAsc("asc");
+    }
+    getData(sort, asc, 3, currentPage);
+  };
   return (
     <>
       <Head>
@@ -286,52 +334,47 @@ const Index = () => {
             <div className="col-md-12 my-5 pt-1 rounded shadow-lg border border bg-white">
               <div className="container-fluid">
                 <form action="" onSubmit={(e) => onSubmitHandler(e)}>
-                <div className="input-group mb-3 mt-2">
-                  <input
-                    type="text"
-                    className="form-control border border-0"
-                    placeholder="Search for any skill"
-                    aria-label="Recipient's username"
-                    aria-describedby="button-addon2"
-                    onChange={(e) => setName(e.target.value)}
-                  />
-                  {/* dropdown kategory */}
-                  <div className="dropdown mx-5 border-start">
+                  <div className="input-group mb-3 mt-2">
+                    <input
+                      type="text"
+                      className="form-control border border-0"
+                      placeholder="Search for any skill"
+                      aria-label="Recipient's username"
+                      aria-describedby="button-addon2"
+                      onChange={(e) => setName(e.target.value)}
+                    />
+                    {/* dropdown kategory */}
+                    <div className="dropdown mx-5 border-start">
+                      <button
+                        className="btn  dropdown-toggle"
+                        type="button"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                      >
+                        Kategori
+                      </button>
+                      <ul className="dropdown-menu">
+                        <li>
+                          <a className="dropdown-item" onClick={handleSorting}>
+                            Sort by {sort}
+                          </a>
+                        </li>
+                        <li>
+                          <a className="dropdown-item" onClick={handleAsc}>
+                            Sort by {asc}
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                    {/* end dropdown kategory */}
                     <button
-                      className="btn  dropdown-toggle"
+                      className="btn btnGrape rounded"
                       type="button"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
+                      id="button-addon2"
                     >
-                      Kategori
+                      Search
                     </button>
-                    <ul className="dropdown-menu">
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Sort by nama
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Sort by skill
-                        </a>
-                      </li>
-                      <li>
-                        <a className="dropdown-item" href="#">
-                          Sort by lokasi
-                        </a>
-                      </li>
-                    </ul>
                   </div>
-                  {/* end dropdown kategory */}
-                  <button
-                    className="btn btnGrape rounded"
-                    type="button"
-                    id="button-addon2"
-                  >
-                    Search
-                  </button>
-                </div>
                 </form>
               </div>
             </div>
@@ -345,7 +388,7 @@ const Index = () => {
                       <div className="row g-0">
                         <div className="col-md-2 d-flex align-items-center justify-content-center">
                           <img
-                            src={`http://localhost:3001/${item.image}`}
+                            src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
                             width={150}
                             // height={100}
                             className="img-fluid rounded-circle"
@@ -408,7 +451,7 @@ const Index = () => {
                     <button
                       className="page-link"
                       aria-label="Previous"
-                      // onClick={() => handlePrevious()}
+                      onClick={() => handlePrevious()}
                     >
                       <span aria-hidden="true">&laquo;</span>
                     </button>
@@ -420,7 +463,8 @@ const Index = () => {
                     <button
                       className="page-link"
                       aria-label="Next"
-                      // onClick={() => handleNext()}
+                      disabled={data.data <= 0}
+                      onClick={() => handleNext()}
                     >
                       <span aria-hidden="true">&raquo;</span>
                     </button>

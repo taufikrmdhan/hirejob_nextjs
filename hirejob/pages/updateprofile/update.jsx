@@ -11,7 +11,7 @@ const Index = () => {
     const data = JSON.parse(localStorage.getItem("data"));
     const id_user = data.id_user;
     axios
-      .get(`http://localhost:3001/user/list/${id_user}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id_user}`)
       .then((res) => {
         console.log(res.data.data);
         setUser(res.data.data);
@@ -29,7 +29,7 @@ const Index = () => {
     let formData = new FormData(e.target);
     formData.append("id_user", id_user);
     axios
-      .put(`http://localhost:3001/user/update/${id_user}`, formData)
+      .put(`${process.env.NEXT_PUBLIC_API_URL}/user/update/${id_user}`, formData)
       .then((res) => {
         console.log(res);
         alert("Update Success");
@@ -43,7 +43,7 @@ const Index = () => {
       const data = JSON.parse(localStorage.getItem("data"));
       const id_user = data.id_user;
       axios
-        .delete(`http://localhost:3001/user/delete/${id_user}`)
+        .delete(`${process.env.NEXT_PUBLIC_API_URL}/user/delete/${id_user}`)
         .then((res) => {
           console.log(res);
           alert("Delete Success");
@@ -81,7 +81,7 @@ const Index = () => {
                   <div className="col-md-12 bg-white p-2 px-4 mb-3 rounded">
                     <div className="col-md-12 my-2">
                       <img
-                        src={`http://localhost:3001/${Object.keys(user).length ? (
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/${Object.keys(user).length ? (
                           user.isLoading ? (
                             <p>Loading...</p>
                           ) : (

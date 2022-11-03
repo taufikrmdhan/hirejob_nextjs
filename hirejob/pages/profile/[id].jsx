@@ -14,7 +14,7 @@ const Detail = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/user/list/${id}`)
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`)
       .then((res) => {
         console.log(res.data.data);
         setData(res.data.data);
@@ -37,7 +37,7 @@ const Detail = () => {
           <div className="col-md-12 bg-light marginNegatif">
             <div className="container">
               <div className="row ">
-                {Object.keys(data).length ? (
+                {
                   data.isLoading ? (
                     <p>Loading...</p>
                   ) : (
@@ -88,23 +88,23 @@ const Detail = () => {
                             <h6>Skill</h6>
                           </div>
                           <div className="col-md-12">
-                            <button type="button" className="btn btnCustom">
+                            <button type="button" className="btn btnCustom ms-2 mt-2">
                               {item.skill}
                             </button>
                             <button
                               type="button"
-                              className="btn btnCustom ms-2"
+                              className="btn btnCustom ms-2 mt-2"
                             >
                               {item.skill}
                             </button>
                             <button
                               type="button"
-                              className="btn btnCustom ms-2"
+                              className="btn btnCustom ms-2 mt-2"
                             >
                               {item.skill}
                             </button>
                           </div>
-                          {/* email, instagram, github */}
+                    
                           <div className="col-md-12 mt-5">
                             <div className="row">
                               <div className="col-md-1">
@@ -137,7 +137,6 @@ const Detail = () => {
                       );
                     })
                   )
-                ) : null
                 }
 
                 <div className="col-md-8 bg-white mb-5 ms-4 rounded upProfileDiri">

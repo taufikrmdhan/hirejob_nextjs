@@ -7,12 +7,8 @@ import Footer from "../../component/Footer";
 import axios from "axios";
 
 const Index = () => {
-  //GET USER DATA BY ID
+  //GET USER DATA BY NAME
   const [user, setUser] = useState([]);
-
-  useEffect(() => {
-    
-  }, []);
 
   return (
     <>
