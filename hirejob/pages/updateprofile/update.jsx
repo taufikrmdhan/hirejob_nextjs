@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
   const [user, setUser] = useState({});
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
@@ -47,20 +47,11 @@ const Index = () => {
         .then((res) => {
           console.log(res);
           alert("Delete Success");
+          router.push("/loginkerja/login");
         })
         .catch((err) => {
           console.log(err);
         });
-
-      // axios
-      //   .delete(`${process.env.REACT_APP_BACKEND_URL}/recipe/delete/${id_recipe}`)
-      //   .then((res) => {
-      //     console.log(res);
-      //     console.log(res.data);
-  
-      //     const posts = recipe.filter((item) => item.id_recipe !== id_recipe);
-      //     setUser({ data: posts });
-      //   });
     };
 
   const hiddenFileInput = useRef(null);
@@ -73,21 +64,6 @@ const Index = () => {
     console.log(fileUploaded);
   };
 
-
-
-    // axios
-    //   .put(`http://localhost:3001/user/update/${id_user}`, formData)
-    //   .then((res) => {
-    //     console.log(res);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
-
-
-  // useEffect(() => {
-  //   console.log(data.id_user);
-  // }, []);
   return (
     <>
       <div>
@@ -105,7 +81,15 @@ const Index = () => {
                   <div className="col-md-12 bg-white p-2 px-4 mb-3 rounded">
                     <div className="col-md-12 my-2">
                       <img
-                        src="/nnzkZNYWHaU.png"
+                        src={`http://localhost:3001/${Object.keys(user).length ? (
+                          user.isLoading ? (
+                            <p>Loading...</p>
+                          ) : (
+                            user.map((data) => {
+                              return data.image;
+                            })
+                          )
+                        ) : null}`}
                         width="100"
                         alt=""
                         className="mx-auto d-block rounded-circle"
@@ -215,7 +199,7 @@ const Index = () => {
                       <h4 className="mt-3">Data diri</h4>
                       <hr />
                       <div className="col-md-12 my-2 mt-4">
-                        <label for="name" className="form-label">
+                        <label htmlFor="name" className="form-label">
                           Nama lengkap
                         </label>
                         <input
@@ -240,7 +224,7 @@ const Index = () => {
                       </div>
 
                       <div className="col-md-12 my-2 mt-4">
-                        <label for="jobdesk" className="form-label">
+                        <label htmlFor="jobdesk" className="form-label">
                           Jobdesk
                         </label>
                         <input
@@ -264,7 +248,7 @@ const Index = () => {
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
-                        <label for="domisili" className="form-label">
+                        <label htmlFor="domisili" className="form-label">
                           Domisili
                         </label>
                         <input
@@ -288,7 +272,7 @@ const Index = () => {
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
-                        <label for="tempatKerja" className="form-label">
+                        <label htmlFor="tempatKerja" className="form-label">
                           Tempat kerja
                         </label>
                         <input
@@ -312,7 +296,7 @@ const Index = () => {
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
-                        <label for="deskripsi" className="form-label">
+                        <label htmlFor="deskripsi" className="form-label">
                           Deskripsi singkat
                         </label>
                         <textarea
@@ -336,7 +320,7 @@ const Index = () => {
                         ></textarea>
                       </div>
                       <div className="col-md-8 mt-3 mb-3">
-                          <label for="skill" className="form-label">
+                          <label htmlFor="skill" className="form-label">
                             Skill
                           </label>
                           <input
@@ -377,7 +361,7 @@ const Index = () => {
                     <div className="col-md-12 my-2 mt-4">
                       <div className="row">
                         <div className="col-md-8 mt-3">
-                          <label for="skill" className="form-label">
+                          <label htmlFor="skill" className="form-label">
                             Skill
                           </label>
                           <input
@@ -399,7 +383,7 @@ const Index = () => {
                     <h4 className="mt-3">Pengalaman kerja</h4>
                     <hr />
                     <div className="col-md-12 my-2 mt-4">
-                      <label for="posisi" className="form-label">
+                      <label htmlFor="posisi" className="form-label">
                         Posisi
                       </label>
                       <input
@@ -411,7 +395,7 @@ const Index = () => {
                     </div>
                     <div className="row">
                       <div className="col-md-6 my-2 mt-4">
-                        <label for="namaPerusahaan" className="form-label">
+                        <label htmlFor="namaPerusahaan" className="form-label">
                           Nama perusahaan
                         </label>
                         <input
@@ -422,7 +406,7 @@ const Index = () => {
                         />
                       </div>
                       <div className="col-md-6 my-2 mt-4">
-                        <label for="tahun" className="form-label">
+                        <label htmlFor="tahun" className="form-label">
                           Bulan/Tahun
                         </label>
                         <input
@@ -434,7 +418,7 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="col-md-12 my-2 mt-4">
-                      <label for="deskripsiSingkat" className="form-label">
+                      <label htmlFor="deskripsiSingkat" className="form-label">
                         Deskripsi singkat
                       </label>
                       <textarea
@@ -453,7 +437,7 @@ const Index = () => {
                     <h4 className="mt-3">Portfolio</h4>
                     <hr />
                     <div className="col-md-12 my-2 mt-4">
-                      <label for="namaAplikasi" className="form-label">
+                      <label htmlFor="namaAplikasi" className="form-label">
                         Nama aplikasi
                       </label>
                       <input
@@ -464,7 +448,7 @@ const Index = () => {
                       />
                     </div>
                     <div className="col-md-12 my-2 mt-4">
-                      <label for="linkRepository" className="form-label">
+                      <label htmlFor="linkRepository" className="form-label">
                         Link repository
                       </label>
                       <input
@@ -475,7 +459,7 @@ const Index = () => {
                       />
                     </div>
                     <div className="row my-2 mt-4">
-                      <label for="typePort" className="form-label">
+                      <label htmlFor="typePort" className="form-label">
                         Type portfolio
                       </label>
                       <div className="col-md-3">
@@ -488,7 +472,7 @@ const Index = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
+                            htmlFor="flexRadioDefault1"
                           >
                             Aplikasi mobile
                           </label>
@@ -504,7 +488,7 @@ const Index = () => {
                           />
                           <label
                             className="form-check-label"
-                            for="flexRadioDefault1"
+                            htmlFor="flexRadioDefault1"
                           >
                             Aplikasi Web
                           </label>
@@ -512,7 +496,7 @@ const Index = () => {
                       </div>
                     </div>
                     <div className="col-md-12 my-2 mt-4">
-                      <label for="upload" className="form-label">
+                      <label htmlFor="upload" className="form-label">
                         Upload
                       </label>
                       <div className="container custDashed text-muted">

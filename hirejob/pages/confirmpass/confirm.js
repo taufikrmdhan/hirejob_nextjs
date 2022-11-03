@@ -23,7 +23,7 @@ const Index = () => {
               Enter your user account's verified email address and we will send you a password reset link.
               </p>
               <div>
-                <label for="inputEmail" className="form-label">
+                <label htmlFor="inputEmail" className="form-label">
                   Email
                 </label>
                 <input
@@ -34,7 +34,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label for="inputPassword" className="form-label">
+                <label htmlFor="inputPassword" className="form-label">
                   Konfirmasi password baru
                 </label>
                 <input

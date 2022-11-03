@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
 
 const Index = () => {
@@ -30,13 +29,13 @@ const Index = () => {
             </button>
             <div className="collapse navbar-collapse" id="navbarText">
               <ul className="navbar-nav me-auto mb-2 ms-5 mb-lg-0"></ul>
-              <Link className="" href="/loginrekrut/login">
+              <Link className="" href="/pilih/pilihlogin">
                 <button
                   type="button"
                   className="btn btnGrape2 me-3 px-3 "
                 >Masuk</button>
               </Link>
-              <Link className="" href="/registerrekrut/register">
+              <Link className="" href="/pilih/pilihregis">
               <button type="button" className="btn btnGrape me-5 px-3">
                 Daftar
               </button>

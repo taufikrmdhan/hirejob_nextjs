@@ -23,7 +23,7 @@ const Index = () => {
               We have an an email containing a password reset instruction toyour email. please check your email.
               </p>
               <div>
-                <label for="inputEmail" className="form-label">
+                <label htmlFor="inputEmail" className="form-label">
                   Email
                 </label>
                 <input
@@ -34,7 +34,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label for="inputPassword" className="form-label">
+                <label htmlFor="inputPassword" className="form-label">
                   Kata sandi
                 </label>
                 <input

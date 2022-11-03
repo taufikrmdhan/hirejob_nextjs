@@ -1,9 +1,29 @@
 
-import React from "react";
+import React, {useEffect,useState} from "react";
 import Link from "next/link";
 import Image from "next/image";
+// import axios from "axios";
+// import {useRouter} from "next/router";
 
 const Navbar = () => {
+
+  // const router = useRouter();
+  // const [user, setUser] = useState({});
+
+  // useEffect(() => {
+  //   const data = JSON.parse(localStorage.getItem("data"));
+  //   const id_user = data.id_user;
+  //   axios
+  //     .get(`http://localhost:3001/user/list/${id_user}`)
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       setUser(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   return (
      <div className="container-fluid">
         <nav className="navbar navbar-expand-lg bg-white">

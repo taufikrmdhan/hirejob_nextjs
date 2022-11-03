@@ -25,7 +25,7 @@ const Index = () => {
                   sunt.
                 </p>
                 <div>
-                  <label for="inputUsername" className="form-label">
+                  <label htmlFor="inputUsername" className="form-label">
                     Nama
                   </label>
                   <input
@@ -35,7 +35,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <label for="inputEmail" className="form-label">
+                  <label htmlFor="inputEmail" className="form-label">
                     Email
                   </label>
                   <input
@@ -46,7 +46,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <label for="inputCompany" className="form-label">
+                  <label htmlFor="inputCompany" className="form-label">
                     Perusahaan
                   </label>
                   <input
@@ -57,7 +57,7 @@ const Index = () => {
                 </div>
 
                 <div>
-                  <label for="inputPosition" className="form-label">
+                  <label htmlFor="inputPosition" className="form-label">
                     Jabatan
                   </label>
                   <input
@@ -67,7 +67,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <label for="inputPhone" className="form-label">
+                  <label htmlFor="inputPhone" className="form-label">
                     No handphone
                   </label>
                   <input
@@ -77,7 +77,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <label for="inputPassword" className="form-label">
+                  <label htmlFor="inputPassword" className="form-label">
                     Kata sandi
                   </label>
                   <input
@@ -88,7 +88,7 @@ const Index = () => {
                   />
                 </div>
                 <div>
-                  <label for="inputPassword" className="form-label">
+                  <label htmlFor="inputPassword" className="form-label">
                     Konfirmasi password
                   </label>
                   <input

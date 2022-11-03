@@ -22,7 +22,8 @@ const Index = () => {
         password: form.password,
       }
       axios
-      .post("http://localhost:3001/user/login", body)
+      // .post(`http://localhost:3001/user/login`, body)
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/user/login`, body)
       .then((res) => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token.token);
@@ -57,7 +58,7 @@ const Index = () => {
                 Corrupti aut officia explicabo amet, quas voluptate porro sunt.
               </p>
               <div>
-                <label for="inputEmail" className="form-label">
+                <label htmlFor="inputEmail" className="form-label">
                   Email
                 </label>
                 <input
@@ -69,7 +70,7 @@ const Index = () => {
                 />
               </div>
               <div>
-                <label for="inputPassword" className="form-label">
+                <label htmlFor="inputPassword" className="form-label">
                   Kata sandi
                 </label>
                 <input
