@@ -17,27 +17,15 @@ const userController = {
       });
   },
 
-    // getAllUser: (req, res) => {
-    //   const limit = parseInt(req.query.limit) || 3;
-    //   const page = parseInt(req.query.page) || 1;
-    //   const offset = (page - 1) * limit;
-  	// const sort = req.query.sort;
-  	// const asc = req.query.asc;
-    //   userModel
-    //     .list(limit, offset, sort, asc)
-    //     .then((result) => {
-    //       success(res, result.rows, "success", "success get data");
-    //     })
-    //     .catch((err) => {
-    //       failed(res, err, "failed", "failed get data");
-    //     });
-    // },
   getAllUser: (req, res) => {
-    const limit = parseInt(req.query.limit) || 5;
+    const sort = req.query.sort;
+    const asc = req.query.asc;
+    const limit = parseInt(req.query.limit) || 3;
     const page = parseInt(req.query.page) || 1;
     const offset = (page - 1) * limit;
+
     userModel
-      .list(limit, offset)
+      .list(sort, asc, limit, offset)
       .then((result) => {
         success(res, result.rows, "success", "success get data");
       })
@@ -45,6 +33,19 @@ const userController = {
         failed(res, err, "failed", "failed get data");
       });
   },
+  // getAllUser: (req, res) => {
+  //   const limit = parseInt(req.query.limit) || 5;
+  //   const page = parseInt(req.query.page) || 1;
+  //   const offset = (page - 1) * limit;
+  //   userModel
+  //     .list(limit, offset)
+  //     .then((result) => {
+  //       success(res, result.rows, "success", "success get data");
+  //     })
+  //     .catch((err) => {
+  //       failed(res, err, "failed", "failed get data");
+  //     });
+  // },
 
   getUserByName: (req, res) => {
     const name = req.params.name;

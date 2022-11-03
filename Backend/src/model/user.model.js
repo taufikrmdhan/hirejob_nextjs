@@ -27,23 +27,10 @@ const userModel = {
         }
       );
     }),
-//   list: (sort, asc, limit, offset) =>
-//     new Promise((resolve, reject) => {
-//       db.query(
-//         `SELECT * FROM users order by ${sort} ${asc} LIMIT ${limit} OFFSET ${offset}`,
-//         (err, result) => {
-//           if (err) {
-//             reject(err);
-//           } else {
-//             resolve(result);
-//           }
-//         }
-//       );
-//     }),
-list: (limit, offset) =>
+  list: (sort, asc, limit, offset) =>
     new Promise((resolve, reject) => {
       db.query(
-        `SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`,
+        `SELECT * FROM users order by ${sort} ${asc} LIMIT ${limit} OFFSET ${offset}`,
         (err, result) => {
           if (err) {
             reject(err);
@@ -53,6 +40,19 @@ list: (limit, offset) =>
         }
       );
     }),
+// list: (limit, offset) =>
+//     new Promise((resolve, reject) => {
+//       db.query(
+//         `SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`,
+//         (err, result) => {
+//           if (err) {
+//             reject(err);
+//           } else {
+//             resolve(result);
+//           }
+//         }
+//       );
+//     }),
 
   listUserById: (id_user) => {
     return new Promise((resolve, reject) => {
