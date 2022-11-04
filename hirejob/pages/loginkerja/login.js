@@ -28,8 +28,8 @@ const Index = () => {
         console.log(res.data);
         localStorage.setItem("token", res.data.token.token);
         localStorage.setItem("data", JSON.stringify(res.data.token.data));
-        // document.cookie = `token=${res.data.token.token}`;
-        // document.cookie = `data=${JSON.stringify(res.data.token.data)}`;
+        document.cookie = `token=${res.data.token.token}`;
+        document.cookie = `data=${JSON.stringify(res.data.token.data)}`;
         alert("Login Success");
         router.push("/landingpage/afterlogin");
       })

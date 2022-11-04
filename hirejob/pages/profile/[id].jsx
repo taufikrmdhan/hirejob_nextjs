@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
 // import {useSearchParams} from "react-router-dom";
 import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
+
 
 const Detail = () => {
   const router = useRouter();

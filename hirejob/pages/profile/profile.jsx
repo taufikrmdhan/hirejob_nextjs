@@ -79,7 +79,6 @@ const Index = () => {
                       tes
                     </button>
                   </div>
-                  {/* email, instagram, github */}
                   <div className="col-md-12 mt-5">
                     <div className="row">
                       <div className="col-md-1">
@@ -105,12 +104,6 @@ const Index = () => {
                         <p className="text-muted">taufik_rmdhan</p>
                       </div>
                     </div>
-                    {/* <div className="col-md-3">
-                                <i className="fab fa-instagram"></i>
-                            </div>
-                            <div className="col-md-3">
-                                <i className="fab fa-github"></i>
-                            </div> */}
                   </div>
                 </div>
                 <div className="col-md-8 bg-white mb-5 ms-4 rounded upProfileDiri">
