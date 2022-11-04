@@ -223,37 +223,22 @@ const Index = () => {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [name, setName] = useState("");
-
   const [sort, setSort] = useState("id_user");
   const [asc, setAsc] = useState("asc");
+
+  const [name, setName] = useState("");
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (name != "") {
       axios
-        .get(`${process.env.REACT_APP_BACKEND_URL}/user/list/name/${name}`)
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/name/${name}`)
         .then((res) => {
-          // if data > 0
-          console.log(res.data);
           setData(res.data);
-          if (res.data.length === 0) {
-            alert("Data tidak ditemukan");
-          } else {
-            router.push(`/profile/profile/${name}`);
-          }
-          // if (res.data.length >= 0) {
-          //   router.push(`/profile/profile`);
-          // } else {
-          //   alert("data tidak ada");
-          // }
-        })
-        .catch((err) => {
-          console.log(err);
+          router.push(`/home/home?name=${name}`);
         });
     }
   };
-  // add parameter page limit
   useEffect(() => {
     getData(sort, asc,3, currentPage);
   }, [sort, asc, currentPage]);
@@ -275,17 +260,6 @@ const Index = () => {
         console.log(err);
       });
   };
-
-//   const NextPage = () => {
-//     setPage(page + 1);
-//     getData(sort, asc, 3, page);
-//   };
-// const PreviousPage = () => {
-//     if (page > 1) {
-//       setPage(page - 1);
-//       getData(sort, asc, 3, page - 1);
-//     }
-//   };
 
   const handleNext = () => {
       setCurrentPage(currentPage + 1);
