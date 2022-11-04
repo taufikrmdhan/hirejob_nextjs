@@ -10,6 +10,7 @@ const xss = require("xss-clean");
 const userRouter = require("./src/router/user.routes");
 const portfolioRouter = require("./src/router/portfolio.routes");
 const jobRouter = require("./src/router/job.routes");
+const recruiterRouter = require("./src/router/recruiter.routes");
 
 const app = express();
 
@@ -24,6 +25,7 @@ try {
 	app.use(portfolioRouter);
 	app.use(userRouter);
 	app.use(jobRouter);
+	app.use(recruiterRouter);
 } catch (err) {
 	console.log(err);
 }

@@ -2,6 +2,7 @@ const fs = require("fs");
 const userModel = require("../model/user.model");
 const portofolioModel = require("../model/portfolio.model");
 const jobModel = require("../model/job.model");
+const recruiterModel = require("../model/recruiter.model");
 // const airlineModel = require("../model/portfolio.model");
 
 module.exports = {
@@ -65,6 +66,31 @@ module.exports = {
 		const data = await portofolioModel.getDetailPorto(id_portofolio);
 		if(data) {
 			console.log(data.rows[0].image);
+			if (data.rows[0].image) {
+				const img = data.rows[0].image;
+				if (img !== "default.png") {
+					fs.unlink(`./public/${img}`, (err) => {
+						if (err) {
+							res.json({
+								message: "delete failed",
+								error: err,
+							});
+						}
+					});
+				}
+				next();
+			} else {
+				res.json("There is no profile picture");
+			}
+		}else{
+			res.json("portofoid_portofolio ID is not found");
+		}
+	},
+	removeRecruiter: async (req, res, next) => {
+		const id_recruiter = req.params.id_recruiter;
+
+		const data = await recruiterModel.listRecruiterById(id_recruiter);
+		if(data) {
 			if (data.rows[0].image) {
 				const img = data.rows[0].image;
 				if (img !== "default.png") {
