@@ -87,7 +87,7 @@ const Index = (props) => {
                 <p className="text-muted">{item.city}</p>
               </div>
               <div className="col-md-12 mt-3">
-                <p className="text-muted mx-5">{item.image}</p>
+                <p className="text-muted mx-5">{item.description}</p>
               </div>
               <div className="col-md-12 my-3">
                 <Link href="/updateperus/update">

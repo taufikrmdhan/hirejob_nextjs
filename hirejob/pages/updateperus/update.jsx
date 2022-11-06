@@ -15,6 +15,11 @@ const Index = () => {
     const data = JSON.parse(localStorage.getItem("data"));
     const id_recruiter = data.id_recruiter;
 
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/loginrekrut/login");
+    }
+
     axios
       .get(`${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id_recruiter}`)
       .then((res) => {
@@ -76,6 +81,12 @@ const Index = () => {
     console.log(fileUploaded);
     setImage(fileUploaded);
   };
+
+  const logout = () => {
+    localStorage.clear();
+    router.push("/loginrekrut/login");
+  };
+
   return (
     <>
       <div>
@@ -154,6 +165,7 @@ const Index = () => {
                     <button type="button" className="btn btnGrape2 w-100">
                       Batal
                     </button>
+                    <button type="button" onClick={logout} className="btn btn-danger w-100 mt-2">Logout</button>
                   </div>
                 </div>
 
@@ -308,6 +320,7 @@ const Index = () => {
                     >
                       Delete data diri
                     </button>
+                    
                   </form>
                 </div>
               </div>
