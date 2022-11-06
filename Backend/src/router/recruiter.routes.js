@@ -17,7 +17,7 @@ const { isAdmin } = require("../middleware/auth");
 const recruiterRouter = express.Router();
 
 recruiterRouter
-.get('/recruiter/list',  getAllRecruiter)
+.get('/recruiter/list', getAllRecruiter)
 .get('/recruiter/list/:id_recruiter', getRecruiterId)
 .get('/recruiter/list/name/:company_name', getRecruiterByName)
 // .post('/user/add', insert)
