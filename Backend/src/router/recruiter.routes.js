@@ -25,7 +25,7 @@ recruiterRouter
 // .put('/user/update/:email', updateByEmail)
 // // .delete('/user/delete/:id_user', destroy)
 .put("/recruiter/update/:id_recruiter", removeRecruiter, upload, updateRecruiter)
-.delete('/recruiter/delete/:id_recruiter', removeRecruiter, deleteRecruiter)
+.delete('/recruiter/delete/:id_recruiter',jwtAuth, isAdmin, removeRecruiter, deleteRecruiter)
 
 .post('/recruiter/register', register)
 .post('/recruiter/login', login);

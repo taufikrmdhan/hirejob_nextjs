@@ -5,43 +5,43 @@ const bcrypt = require("bcrypt");
 const jwtToken = require("../helper/generateJWT");
 
 const recruiterController = {
-    getRecruiterId: (req, res) => {
-      const id_recruiter = req.params.id_recruiter;
-      recruiterModel
-        .listRecruiterById(id_recruiter)
-        .then((result) => {
-          success(res, result.rows, "success", "get user success");
-        })
-        .catch((err) => {
-          failed(res, err.message, "failed", "get user failed");
-        });
-    },
+  getRecruiterId: (req, res) => {
+    const id_recruiter = req.params.id_recruiter;
+    recruiterModel
+      .listRecruiterById(id_recruiter)
+      .then((result) => {
+        success(res, result.rows, "success", "get user success");
+      })
+      .catch((err) => {
+        failed(res, err.message, "failed", "get user failed");
+      });
+  },
 
-    getAllRecruiter: (req, res) => {
-      const limit = parseInt(req.query.limit) || 5;
-      const page = parseInt(req.query.page) || 1;
-      const offset = (page - 1) * limit;
-      recruiterModel
-        .list(limit, offset)
-        .then((result) => {
-          success(res, result.rows, "success", "success get data");
-        })
-        .catch((err) => {
-          failed(res, err, "failed", "failed get data");
-        });
-    },
+  getAllRecruiter: (req, res) => {
+    const limit = parseInt(req.query.limit) || 5;
+    const page = parseInt(req.query.page) || 1;
+    const offset = (page - 1) * limit;
+    recruiterModel
+      .list(limit, offset)
+      .then((result) => {
+        success(res, result.rows, "success", "success get data");
+      })
+      .catch((err) => {
+        failed(res, err, "failed", "failed get data");
+      });
+  },
 
-    getRecruiterByName: (req, res) => {
-      const company_name = req.params.company_name;
-      recruiterModel
-        .listRecruiterByName(company_name)
-        .then((result) => {
-          success(res, result.rows, "success", "success get data");
-        })
-        .catch((err) => {
-          failed(res, err, "failed", "failed get data");
-        });
-    },
+  getRecruiterByName: (req, res) => {
+    const company_name = req.params.company_name;
+    recruiterModel
+      .listRecruiterByName(company_name)
+      .then((result) => {
+        success(res, result.rows, "success", "success get data");
+      })
+      .catch((err) => {
+        failed(res, err, "failed", "failed get data");
+      });
+  },
 
   //   getUserByName: (req, res) => {
   //     const name = req.params.name;
@@ -139,9 +139,24 @@ const recruiterController = {
         failed(res, err.message, "failed", "Internal server error");
       });
   },
-    updateRecruiter: (req, res) => {
-      const id_recruiter = req.params.id_recruiter;
-      const {
+  updateRecruiter: (req, res) => {
+    const id_recruiter = req.params.id_recruiter;
+    const {
+      full_name,
+      email,
+      company_name,
+      department,
+      phone,
+      business,
+      city,
+      linkedin,
+      instagram,
+      description,
+    } = req.body;
+    const image = req.file ? req.file.filename : "default.png";
+    recruiterModel
+      .updateRecruiter(
+        id_recruiter,
         full_name,
         email,
         company_name,
@@ -151,44 +166,29 @@ const recruiterController = {
         city,
         linkedin,
         instagram,
-        description,
-      } = req.body;
-      const image = req.file ? req.file.filename : "default.png";
-      recruiterModel
-        .updateRecruiter(
-          id_recruiter,
-            full_name,
-            email,
-            company_name,
-            department,
-            phone,
-            business,
-            city,
-            linkedin,
-            instagram,
-            description,
-            image
-        )
-        .then((result) => {
-          success(res, result.rowCount, "success", "success update user");
-        })
-        .catch((err) => {
-          failed(res, err.message, "failed", "failed update user");
-        });
-    },
+        image,
+        description
+      )
+      .then((result) => {
+        success(res, result.rowCount, "success", "success update user");
+      })
+      .catch((err) => {
+        failed(res, err.message, "failed", "failed update user");
+      });
+  },
 
-    deleteRecruiter: (req, res) => {
-      const id_recruiter = req.params.id_recruiter;
+  deleteRecruiter: (req, res) => {
+    const id_recruiter = req.params.id_recruiter;
 
-      recruiterModel
-        .deleteRecruiter(id_recruiter)
-        .then((result) => {
-          res.json(result);
-        })
-        .catch((error) => {
-          res.json(error);
-        });
-    },
+    recruiterModel
+      .deleteRecruiter(id_recruiter)
+      .then((result) => {
+        res.json(result);
+      })
+      .catch((error) => {
+        res.json(error);
+      });
+  },
 };
 
 module.exports = recruiterController;
