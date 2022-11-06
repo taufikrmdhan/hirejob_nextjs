@@ -32,7 +32,7 @@ const Index = () => {
             <div className="collapse navbar-collapse" id="navbarText">
               <ul className="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" href="/home/home">
+                  <Link className="nav-link active" aria-current="page" href="/home/homeRec">
                     Home
                   </Link>
                 </li>

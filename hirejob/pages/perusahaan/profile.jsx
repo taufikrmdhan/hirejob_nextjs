@@ -1,9 +1,27 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Footer from "../../component/Footer";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import axios from "axios";
 
 const Index = () => {
+  const router = useRouter();
+  const [recruiter, setRecruiter] = useState([]);
+  useEffect(() => {
+    const data = JSON.parse(localStorage.getItem("data"));
+    const id_recruiter = data.id_recruiter;
+    axios
+      .get(`${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id_recruiter}`)
+      .then((res) => {
+        console.log(res.data.data);
+        setRecruiter(res.data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <Head>
@@ -12,7 +30,10 @@ const Index = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="container-fluid">
-        <div className="row text-center p-2 m-5 bg-light shadow-lg rounded">
+        {
+          recruiter.map((item) => {
+            return (
+              <div className="row text-center p-2 m-5 bg-light shadow-lg rounded">
           <div className="col-md-12 bgUngu">
             <button className="btn  d-flex justify-content-end align-items-end text-white">
               &#9998; Ubah Latar
@@ -28,20 +49,23 @@ const Index = () => {
             />
           </div>
           <div className="col-md-12">
-            <h3>PT XYZ</h3>
+            <h3>
+              {item.company_name}
+            </h3>
           </div>
           <div className="col-md-12">
-            <p>Financial</p>
+            <p>
+              {item.business}
+            </p>
           </div>
           <div className="col-md-12">
-            <p className="text-muted">Yogyakarta</p>
+            <p className="text-muted">
+              {item.city}
+            </p>
           </div>
           <div className="col-md-12 mt-3">
             <p className="text-muted mx-5">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-              Repellendus mollitia aspernatur tenetur nihil? Quasi excepturi
-              cumque quisquam rerum ex officiis vero assumenda voluptates
-              sapiente dolorem odio, ipsa blanditiis dolore recusandae!
+              {item.description}
             </p>
           </div>
           <div className="col-md-12 my-3">
@@ -58,7 +82,9 @@ const Index = () => {
                 <i className="fa fa-envelope text-muted"></i>
               </div>
               <div className="col-md-8">
-                <p className="text-muted">@gmail.aufik</p>
+                <p className="text-muted">
+                  {item.email}
+                </p>
                 {/* </div> */}
               </div>
             </div>
@@ -70,7 +96,9 @@ const Index = () => {
                 <i className="fa fa-github text-muted"></i>
               </div>
               <div className="col-md-8">
-                <p className="text-muted">taufik_rmdhan</p>
+                <p className="text-muted">
+                  {item.instagram}
+                </p>
                 {/* </div> */}
               </div>
             </div>
@@ -82,12 +110,17 @@ const Index = () => {
                 <i className="fa fa-linkedin text-muted"></i>
               </div>
               <div className="col-md-8">
-                <p className="text-muted">taufik_rmdhan</p>
+                <p className="text-muted">
+                  {item.linkedin}
+                </p>
                 {/* </div> */}
               </div>
             </div>
           </div>
         </div>
+            )
+          })
+        }
       </div>
       <Footer />
     </>

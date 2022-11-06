@@ -11,21 +11,9 @@ const layouts = {
   L: Layout,
   F: Layfooter,
 };
-
-// const layoutsFooter = {
-//   LF: Layfooter,
-// };
-
 const noLayout = ({ children }) => {
   return <>{children}</>;
 };
-
-// function MyApp({ Component, pageProps }) {
-//   useEffect(() => {
-//     require("bootstrap/dist/js/bootstrap.bundle.min.js");
-//   }, []);
-//   return <Component {...pageProps} />
-// }
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     require("bootstrap/dist/js/bootstrap.bundle.min.js");

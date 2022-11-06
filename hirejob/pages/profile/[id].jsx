@@ -6,23 +6,21 @@ import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
 
+const Detail = (props) => {
 
-const Detail = () => {
-  const router = useRouter();
-  const { id } = router.query;
-  const [data, setData] = useState([]);
+  const [data, setData] = useState(props.resUser[0]);
 
-  useEffect(() => {
-    axios
-      .get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`)
-      .then((res) => {
-        console.log(res.data.data);
-        setData(res.data.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`)
+  //     .then((res) => {
+  //       console.log(res.data.data);
+  //       setData(res.data.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <>
@@ -38,15 +36,15 @@ const Detail = () => {
             <div className="container">
               <div className="row ">
                 {
-                  data.isLoading ? (
-                    <p>Loading...</p>
+                  data.length === 0 ? (
+                    <p>Data is not available</p>
                   ) : (
                     data.map((item) => {
                       return (
-                        <div className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile">
+                        <div key={item.id_user} className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile">
                           <div className="col-md-12 my-2">
                             <img
-                              src="/nnzkZNYWHaU.png"
+                              src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
                               width="100"
                               alt=""
                               className="mx-auto d-block rounded-circle"
@@ -69,7 +67,7 @@ const Detail = () => {
                             </div>
                           </div>
                           <div className="col-md-12 my-2 mt-2">
-                            <p className="text-muted">{item.title}</p>
+                            <p className="text-muted">financial</p>
                           </div>
                           <div className="col-md-12 my-2 mt-2">
                             <p className="text-muted">{item.description}</p>
@@ -111,7 +109,7 @@ const Detail = () => {
                                 <i className="fa fa-instagram text-muted"></i>
                               </div>
                               <div className="col-md-8">
-                                <p className="text-muted">{item.instagram}</p>
+                                <p className="text-muted">@coba</p>
                               </div>
                             </div>
                             <div className="row">
@@ -120,7 +118,7 @@ const Detail = () => {
                               </div>
                               <div className="col-md-8">
                                 <p className="text-muted">
-                                  @student.amikom.ac.id
+                                  {item.email}
                                 </p>
                               </div>
                             </div>
@@ -129,7 +127,7 @@ const Detail = () => {
                                 <i className="fa fa-github text-muted"></i>
                               </div>
                               <div className="col-md-8">
-                                <p className="text-muted">{item.github}</p>
+                                <p className="text-muted">@cobajuga</p>
                               </div>
                             </div>
                           </div>
@@ -294,4 +292,21 @@ const Detail = () => {
   );
 };
 Detail.layout = "L";
+export async function getServerSideProps(context) {
+  const id = context.params.id;
+  let resUser = [];
+
+  try {
+    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`);
+    resUser.push(data.data);
+  } catch (err) {
+    console.log(err);
+  }
+
+  return {
+    props: {
+      resUser,
+    }
+  }
+}
 export default Detail;

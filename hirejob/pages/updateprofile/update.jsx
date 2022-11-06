@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 const Index = () => {
   const router = useRouter();
   const [user, setUser] = useState({});
+  const [image, setImage] = useState("");
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
     const id_user = data.id_user;
@@ -27,6 +28,9 @@ const Index = () => {
     const id_user = data.id_user;
     console.log(id_user);
     let formData = new FormData(e.target);
+    if(image !== ""){
+      formData.append("image", image);
+    }
     formData.append("id_user", id_user);
     axios
       .put(`${process.env.NEXT_PUBLIC_API_URL}/user/update/${id_user}`, formData)
@@ -62,6 +66,7 @@ const Index = () => {
   const handleChange = (event) => {
     const fileUploaded = event.target.files[0];
     console.log(fileUploaded);
+    setImage(fileUploaded);
   };
 
   return (
@@ -106,6 +111,7 @@ const Index = () => {
                           type="file"
                           ref={hiddenFileInput}
                           id="formFile"
+                          name="image"
                           onChange={(e) => handleChange(e)}
                           style={{ display: "none" }}
                         />
@@ -257,42 +263,46 @@ const Index = () => {
                           id="domisili"
                           placeholder="Domisili"
                           name="city"
-                          defaultValue=                      {
-                            Object.keys(user).length ?
+                          defaultValue={
+                            Object.values(user).length ?
                             user.isLoading ? (
                               <p>Loading...</p>
                             ) : (
                               user.map((data) => {
                                     return data.city;
-                                  })
+                                  }
+                              )
                             )
-                            :
+                            : 
                             null
                           }
+                            
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
-                        <label htmlFor="tempatKerja" className="form-label">
-                          Tempat kerja
+                        <label htmlFor="phone" className="form-label">
+                          No Handphone
                         </label>
                         <input
                           type="text"
                           className="form-control"
-                          id="tempatKerja"
-                          placeholder="Tempat kerja"
-                          name="city"
-                          defaultValue=                      {
-                            Object.keys(user).length ?
+                          id="phone"
+                          placeholder="+62"
+                          name="phone"
+                          defaultValue={
+                            Object.values(user).length ?
                             user.isLoading ? (
                               <p>Loading...</p>
                             ) : (
                               user.map((data) => {
-                                    return data.city;
-                                  })
+                                    return data.phone;
+                                  }
+                              )
                             )
-                            :
+                            : 
                             null
                           }
+                            
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
@@ -336,7 +346,7 @@ const Index = () => {
                                   <p>Loading...</p>
                                 ) : (
                                   user.map((data) => {
-                                        return data.description;
+                                        return data.skill;
                                       })
                                 )
                                 :

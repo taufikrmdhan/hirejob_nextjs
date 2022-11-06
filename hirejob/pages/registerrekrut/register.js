@@ -1,10 +1,48 @@
-import React from "react";
+import React, {useState} from "react";
 import Head from "next/head";
 import Image from "next/image";
 import Sidepage from "../../component/sidePage";
 import Link from "next/link";
+import axios from "axios";
+import { useRouter } from "next/router";
 
 const Index = () => {
+  const router = useRouter();
+  const [form, setForm] = useState({
+    full_name: "",
+    email: "",
+    company_name: "",
+    department: "",
+    phone: "",
+    password: "",
+  });
+  const onSubmitHandler = (e) => {
+    e.preventDefault();
+    if (form.full_name === "" || form.email === "" || form.company_name === "" || form.department === "" || form.phone === "" || form.password === "") {
+      alert("Please fill all the field");
+    } else {
+      const body = {
+        full_name: form.full_name,
+        email: form.email,
+        company_name: form.company_name,
+        department: form.department,
+        phone: form.phone,
+        password: form.password,
+      }
+      axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/recruiter/register`, body)
+      .then((res) => {
+        console.log(res);
+        alert("Register Success");
+        router.push("/loginrekrut/login");
+        
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Register Failed");
+      })
+    }
+  }
   return (
     <>
       <Head>
@@ -17,7 +55,7 @@ const Index = () => {
           <div className="row">
             <Sidepage />
             <div className="col-md-6 d-flex align-items-center">
-              <form className="row g-3 m-5">
+              <form className="row g-3 m-5" onSubmit={(e) => onSubmitHandler(e)}>
                 <h3 className="">Halo, Pewpeople</h3>
                 <p className=" text-muted">
                   Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -32,6 +70,7 @@ const Index = () => {
                     className="form-control"
                     id="inputUsername"
                     placeholder="Masukkan nama panjang"
+                    onChange={(e) => setForm({...form, full_name: e.target.value})}
                   />
                 </div>
                 <div>
@@ -43,6 +82,7 @@ const Index = () => {
                     className="form-control"
                     id="inputEmail"
                     placeholder="Masukkan email"
+                    onChange={(e) => setForm({...form, email: e.target.value})}
                   />
                 </div>
                 <div>
@@ -53,6 +93,7 @@ const Index = () => {
                     className="form-control"
                     id="inputCompany"
                     placeholder="Enter company name"
+                    onChange={(e) => setForm({...form, company_name: e.target.value})}
                   />
                 </div>
 
@@ -64,6 +105,7 @@ const Index = () => {
                     className="form-control"
                     id="inputPosition"
                     placeholder="Enter position"
+                    onChange={(e) => setForm({...form, department: e.target.value})}
                   />
                 </div>
                 <div>
@@ -74,6 +116,7 @@ const Index = () => {
                     className="form-control"
                     id="inputPhone"
                     placeholder="08xxxxxxxxx"
+                    onChange={(e) => setForm({...form, phone: e.target.value})}
                   />
                 </div>
                 <div>
@@ -85,6 +128,7 @@ const Index = () => {
                     className="form-control"
                     id="inputPassword"
                     placeholder="Masukkan kata sandi"
+                    onChange={(e) => setForm({...form, password: e.target.value})}
                   />
                 </div>
                 <div>
@@ -101,9 +145,10 @@ const Index = () => {
 
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btnCustom">
-                    <Link className="a" href="/registerrekrut/register">
+                    Daftar
+                    {/* <Link className="a" href="/registerrekrut/register">
                       Daftar
-                    </Link>
+                    </Link> */}
                   </button>
                 </div>
                 <div className="text-center">

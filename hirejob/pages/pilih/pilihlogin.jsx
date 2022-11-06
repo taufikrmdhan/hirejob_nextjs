@@ -19,14 +19,14 @@ const Index = () => {
               <form className="row g-3 m-5">
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btnCustom">
-                    <Link className="a" href="/loginrekrut/login">
+                    <Link className="a" href="/loginkerja/login">
                       Login as Job Seeker
                     </Link>
                   </button>
                 </div>
                 <div className="d-grid gap-2">
                   <button type="submit" className="btn btnCustom">
-                    <Link className="a" href="/loginkerja/login">
+                    <Link className="a" href="/loginrekrut/login">
                       Login as Employer
                     </Link>
                   </button>
