@@ -10,6 +10,9 @@ export async function getStaticProps(){
   const response = await axios({
     method: 'GET',
     url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list`,
+    // headers: {
+    //   token: localStorage.getItem('token')
+    // }
   })
   return {
     props:{

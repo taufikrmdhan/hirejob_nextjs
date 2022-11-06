@@ -18,7 +18,7 @@ export async function getStaticProps(context) {
         props: {
             data: response.data.data
         },
-        revalidate: 10,
+        revalidate: 1,
         notFound: false
     }
   } 
@@ -27,7 +27,7 @@ export async function getStaticProps(context) {
         props: {
             data: null
         },
-        revalidate: 10,
+        revalidate: 1,
         notFound: true
     }
   }

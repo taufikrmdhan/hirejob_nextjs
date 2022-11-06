@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Sidepage from "../../component/sidePage";
 import Link from "next/link";
 import axios from "axios";
@@ -32,7 +31,6 @@ const Index = () => {
       axios
       .post(`${process.env.NEXT_PUBLIC_API_URL}/recruiter/register`, body)
       .then((res) => {
-        console.log(res);
         alert("Register Success");
         router.push("/loginrekrut/login");
         

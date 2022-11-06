@@ -20,7 +20,7 @@ const Index = () => {
             <form className="row g-3 m-5">
               <h3 className="">Reset Password</h3>
               <p className=" text-muted">
-              Enter your user account's verified email address and we will send you a password reset link.
+              Enter your user accounts verified email address and we will send you a password reset link.
               </p>
               <div>
                 <label htmlFor="inputEmail" className="form-label">

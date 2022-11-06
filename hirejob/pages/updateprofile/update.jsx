@@ -28,12 +28,15 @@ const Index = () => {
     const id_user = data.id_user;
     console.log(id_user);
     let formData = new FormData(e.target);
-    if(image !== ""){
+    if (image !== "") {
       formData.append("image", image);
     }
     formData.append("id_user", id_user);
     axios
-      .put(`${process.env.NEXT_PUBLIC_API_URL}/user/update/${id_user}`, formData)
+      .put(
+        `${process.env.NEXT_PUBLIC_API_URL}/user/update/${id_user}`,
+        formData
+      )
       .then((res) => {
         console.log(res);
         alert("Update Success");
@@ -41,22 +44,22 @@ const Index = () => {
       .catch((err) => {
         console.log(err);
       });
-    }
+  };
 
-    const deleteRow = () => {
-      const data = JSON.parse(localStorage.getItem("data"));
-      const id_user = data.id_user;
-      axios
-        .delete(`${process.env.NEXT_PUBLIC_API_URL}/user/delete/${id_user}`)
-        .then((res) => {
-          console.log(res);
-          alert("Delete Success");
-          router.push("/loginkerja/login");
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    };
+  const deleteRow = () => {
+    const data = JSON.parse(localStorage.getItem("data"));
+    const id_user = data.id_user;
+    axios
+      .delete(`${process.env.NEXT_PUBLIC_API_URL}/user/delete/${id_user}`)
+      .then((res) => {
+        console.log(res);
+        alert("Delete Success");
+        router.push("/loginkerja/login");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   const hiddenFileInput = useRef(null);
   const handleClick = (event) => {
@@ -86,15 +89,17 @@ const Index = () => {
                   <div className="col-md-12 bg-white p-2 px-4 mb-3 rounded">
                     <div className="col-md-12 my-2">
                       <img
-                        src={`${process.env.NEXT_PUBLIC_API_URL}/${Object.keys(user).length ? (
-                          user.isLoading ? (
-                            <p>Loading...</p>
-                          ) : (
-                            user.map((data) => {
-                              return data.image;
-                            })
-                          )
-                        ) : null}`}
+                        src={`${process.env.NEXT_PUBLIC_API_URL}/${
+                          Object.keys(user).length ? (
+                            user.isLoading ? (
+                              <p>Loading...</p>
+                            ) : (
+                              user.map((data) => {
+                                return data.image;
+                              })
+                            )
+                          ) : null
+                        }`}
                         width="100"
                         alt=""
                         className="mx-auto d-block rounded-circle"
@@ -119,37 +124,31 @@ const Index = () => {
                     </div>
                     <div className="col-md-12 my-2 mt-4">
                       <h5>
-                        {
-                          Object.keys(user).length ?
+                        {Object.keys(user).length ? (
                           user.isLoading ? (
                             <p>Loading...</p>
                           ) : (
                             user.map((data) => {
-                                  return data.name;
-                                })
+                              return data.name;
+                            })
                           )
-                          :
-                          null
-                        }
+                        ) : null}
                       </h5>
                     </div>
                     <div className="col-md-12 my-2 mt-2">
                       <p>
-                      {
-                          Object.keys(user).length ?
+                        {Object.keys(user).length ? (
                           user.isLoading ? (
                             <p>Loading...</p>
                           ) : (
                             user.map((data) => {
-                                  return data.job_desk;
-                                })
+                              return data.job_desk;
+                            })
                           )
-                          :
-                          null
-                        }
+                        ) : null}
                       </p>
                     </div>
-                    
+
                     <div className="col-md-12 my-2 mt-2">
                       <div className="row">
                         <div className="col-md-1">
@@ -157,36 +156,30 @@ const Index = () => {
                         </div>
                         <div className="col-md-10">
                           <p className="text-muted">
-                          {
-                          Object.keys(user).length ?
-                          user.isLoading ? (
-                            <p>Loading...</p>
-                          ) : (
-                            user.map((data) => {
+                            {Object.keys(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
                                   return data.city;
                                 })
-                          )
-                          :
-                          null
-                        }
+                              )
+                            ) : null}
                           </p>
                         </div>
                       </div>
                     </div>
                     <div className="col-md-12 my-2 mt-2">
                       <p className="text-muted">
-                      {
-                          Object.keys(user).length ?
+                        {Object.keys(user).length ? (
                           user.isLoading ? (
                             <p>Loading...</p>
                           ) : (
                             user.map((data) => {
-                                  return data.description;
-                                })
+                              return data.description;
+                            })
                           )
-                          :
-                          null
-                        }
+                        ) : null}
                       </p>
                     </div>
                   </div>
@@ -215,16 +208,15 @@ const Index = () => {
                           placeholder="Nama"
                           name="name"
                           defaultValue={
-                            Object.keys(user).length ?
-                            user.isLoading ? (
-                              <p>Loading...</p>
-                            ) : (
-                              user.map((data) => {
-                                    return data.name;
-                                  })
-                            )
-                            :
-                            null
+                            Object.keys(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.name;
+                                })
+                              )
+                            ) : null
                           }
                         />
                       </div>
@@ -239,17 +231,16 @@ const Index = () => {
                           id="jobdesk"
                           placeholder="Jobdesk"
                           name="job_desk"
-                          defaultValue=                      {
-                            Object.keys(user).length ?
-                            user.isLoading ? (
-                              <p>Loading...</p>
-                            ) : (
-                              user.map((data) => {
-                                    return data.job_desk;
-                                  })
-                            )
-                            :
-                            null
+                          defaultValue={
+                            Object.keys(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.job_desk;
+                                })
+                              )
+                            ) : null
                           }
                         />
                       </div>
@@ -264,19 +255,16 @@ const Index = () => {
                           placeholder="Domisili"
                           name="city"
                           defaultValue={
-                            Object.values(user).length ?
-                            user.isLoading ? (
-                              <p>Loading...</p>
-                            ) : (
-                              user.map((data) => {
-                                    return data.city;
-                                  }
+                            Object.values(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.city;
+                                })
                               )
-                            )
-                            : 
-                            null
+                            ) : null
                           }
-                            
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
@@ -290,19 +278,16 @@ const Index = () => {
                           placeholder="+62"
                           name="phone"
                           defaultValue={
-                            Object.values(user).length ?
-                            user.isLoading ? (
-                              <p>Loading...</p>
-                            ) : (
-                              user.map((data) => {
-                                    return data.phone;
-                                  }
+                            Object.values(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.phone;
+                                })
                               )
-                            )
-                            : 
-                            null
+                            ) : null
                           }
-                            
                         />
                       </div>
                       <div className="col-md-12 my-2 mt-4">
@@ -315,56 +300,56 @@ const Index = () => {
                           rows="5"
                           placeholder="Tuliskan deskripsi singkat"
                           name="description"
-                          defaultValue= {
-                            Object.keys(user).length ?
-                            user.isLoading ? (
-                              <p>Loading...</p>
-                            ) : (
-                              user.map((data) => {
-                                    return data.description;
-                                  })
-                            )
-                            :
-                            null
+                          defaultValue={
+                            Object.keys(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.description;
+                                })
+                              )
+                            ) : null
                           }
                         ></textarea>
                       </div>
                       <div className="col-md-8 mt-3 mb-3">
-                          <label htmlFor="skill" className="form-label">
-                            Skill
-                          </label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            id="skill"
-                            name="skill"
-                            placeholder="Java"
-                            defaultValue=
-                              {
-                                Object.keys(user).length ?
-                                user.isLoading ? (
-                                  <p>Loading...</p>
-                                ) : (
-                                  user.map((data) => {
-                                        return data.skill;
-                                      })
-                                )
-                                :
-                                null
-                              }
-                            
-                          />
-                        </div>
+                        <label htmlFor="skill" className="form-label">
+                          Skill
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="skill"
+                          name="skill"
+                          placeholder="Java"
+                          defaultValue={
+                            Object.keys(user).length ? (
+                              user.isLoading ? (
+                                <p>Loading...</p>
+                              ) : (
+                                user.map((data) => {
+                                  return data.skill;
+                                })
+                              )
+                            ) : null
+                          }
+                        />
+                      </div>
                       <button type="submit" className="btn btnAdd">
                         Update
                       </button>
                       <div>
-                        <button type="button" className="btn btnDelete mt-2" onClick={(e) => deleteRow(e)}>
+                        <button
+                          type="button"
+                          className="btn btnDelete mt-2"
+                          onClick={(e) => deleteRow(e)}
+                        >
                           Delete data diri
                         </button>
                       </div>
                     </div>
-                  </form> 
+                  </form>
                   <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
                     <h4 className="mt-3">Skill</h4>
                     <hr />

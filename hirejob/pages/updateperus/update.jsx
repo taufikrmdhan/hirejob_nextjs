@@ -1,7 +1,5 @@
 import React, { useRef, useState, useEffect } from "react";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -24,11 +22,12 @@ const Index = () => {
       .get(`${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id_recruiter}`)
       .then((res) => {
         setRecruiter(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  },[router]);
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -59,7 +58,11 @@ const Index = () => {
     const id_recruiter = data.id_recruiter;
     axios
       .delete(
-        `${process.env.NEXT_PUBLIC_API_URL}/recruiter/delete/${id_recruiter}`
+        `${process.env.NEXT_PUBLIC_API_URL}/recruiter/delete/${id_recruiter}`,{
+          headers: {
+            token: localStorage.getItem("token")
+          }
+        }
       )
       .then((res) => {
         console.log(res);
