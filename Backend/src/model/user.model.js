@@ -86,7 +86,6 @@ const userModel = {
   updateUser: (
     id_user,
     name,
-    email,
     phone,
     job_desk,
     title,
@@ -102,7 +101,7 @@ const userModel = {
 	return new Promise((resolve, reject) => {
 	  db.query(
 		`
-			UPDATE users SET name = '${name}', email = '${email}', phone = '${phone}', job_desk = '${job_desk}', title = '${title}', city = '${city}', skill = '${skill}', instagram = '${instagram}', github = '${github}', gitlab = '${gitlab}', portofolio = '${portofolio}', image = '${image}', description = '${description}' WHERE id_user = ${id_user}`
+			UPDATE users SET name = '${name}',  phone = '${phone}', job_desk = '${job_desk}', title = '${title}', city = '${city}', skill = '${skill}', instagram = '${instagram}', github = '${github}', gitlab = '${gitlab}', portofolio = '${portofolio}', image = '${image}', description = '${description}' WHERE id_user = ${id_user}`
 	  )
 		.then((response) => {
 		  resolve(response);

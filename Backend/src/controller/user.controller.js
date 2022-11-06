@@ -144,7 +144,6 @@ const userController = {
     const id_user = req.params.id_user;
     const {
       name,
-      email,
       phone,
       job_desk,
       title,
@@ -161,7 +160,6 @@ const userController = {
       .updateUser(
         id_user,
         name,
-        email,
         phone,
         job_desk,
         title,

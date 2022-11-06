@@ -87,6 +87,15 @@ const recruiterModel = {
         }
       });
     }),
+    listRecruiterByName: (company_name) => new Promise((resolve, reject) => {
+      db.query(`SELECT * FROM recruiter WHERE lower(company_name) LIKE lower ('${company_name}')`, (err, result) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(result);
+        }
+      });
+    }),
     deleteRecruiter: (id_recruiter) => new Promise((resolve, reject) => {
       db.query(`DELETE FROM recruiter WHERE id_recruiter = ${id_recruiter}`, (err, result) => {
         if (err) {

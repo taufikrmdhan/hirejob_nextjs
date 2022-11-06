@@ -6,7 +6,8 @@ const {
   getAllRecruiter,
   getRecruiterId,
   deleteRecruiter,
-  updateRecruiter
+  updateRecruiter,
+  getRecruiterByName
 } = require("../controller/recruiter.controller");
 const { upload } = require("../middleware/uploadImg");
 const { removeRecruiter } = require("../middleware/deleteImg");
@@ -16,8 +17,9 @@ const { isAdmin } = require("../middleware/auth");
 const recruiterRouter = express.Router();
 
 recruiterRouter
-.get('/recruiter/list', jwtAuth, isAdmin, getAllRecruiter)
+.get('/recruiter/list',  getAllRecruiter)
 .get('/recruiter/list/:id_recruiter', getRecruiterId)
+.get('/recruiter/list/name/:company_name', getRecruiterByName)
 // .post('/user/add', insert)
 // .put('/user/update/:id_user', deleted.remove, upload, update)
 // .put('/user/update/:email', updateByEmail)

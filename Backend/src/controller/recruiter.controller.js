@@ -31,6 +31,18 @@ const recruiterController = {
         });
     },
 
+    getRecruiterByName: (req, res) => {
+      const company_name = req.params.company_name;
+      recruiterModel
+        .listRecruiterByName(company_name)
+        .then((result) => {
+          success(res, result.rows, "success", "success get data");
+        })
+        .catch((err) => {
+          failed(res, err, "failed", "failed get data");
+        });
+    },
+
   //   getUserByName: (req, res) => {
   //     const name = req.params.name;
   //     recruiterModel
