@@ -1,6 +1,7 @@
 import React from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Footer from "../../component/Footer";
 
 const Index = () => {
   return (
@@ -268,13 +269,14 @@ const Index = () => {
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 200">
               <path
                 fill="#655b94"
-                fill-opacity="1"
+                fillOpacity="1"
                 d="M0,160L48,165.3C96,171,192,181,288,154.7C384,128,480,64,576,69.3C672,75,768,149,864,181.3C960,213,1056,203,1152,176C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
               ></path>
             </svg>
           </div>
         </section>
       </main>
+      <Footer />
     </>
   );
 };
