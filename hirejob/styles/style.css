@@ -248,3 +248,15 @@ form div p .ap{
   /* .marginNegatif{
     margin-top: -100px !important;
   } */
+
+  .customChat1{
+    height: 60vh;
+  }
+  .customImgChat{
+    margin-top: 40%;
+    text-align: center;
+  }
+
+  .custChat{
+    margin-top: 355px !important;
+  }

@@ -4,6 +4,7 @@ import Head from "next/head";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import Link from "next/link";
+import { protectedRoute } from "../../HOC/protectionRoute";
 // import { useRouter } from "next/router";
 
 export async function getStaticProps(){
@@ -196,4 +197,4 @@ const Index = (props) => {
   );
 };
 Index.layout = "L";
-export default Index;
+export default protectedRoute(Index);

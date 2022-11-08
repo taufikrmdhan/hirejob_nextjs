@@ -1,10 +1,10 @@
-// csr
 import React, {useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { protectedRoute } from "../../HOC/protectionRoute";
 
 const Index = (props) => {
   const router = useRouter();
@@ -262,4 +262,4 @@ export async function getServerSideProps(context) {
     }
   }
 }
-export default Index;
+export default protectedRoute(Index);

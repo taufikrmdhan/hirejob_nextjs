@@ -3,6 +3,7 @@ import Head from "next/head";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { protectedRoute } from "../../HOC/protectionRoute";
 
 const Index = () => {
   const router = useRouter();
@@ -559,4 +560,4 @@ const Index = () => {
   );
 };
 Index.layout = "L";
-export default Index;
+export default protectedRoute(Index);

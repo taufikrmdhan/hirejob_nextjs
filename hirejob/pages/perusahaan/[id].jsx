@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Head from "next/head";
-import Image from "next/image";
 import Footer from "../../component/Footer";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import axios from "axios";
+import { protectedRoute } from "../../HOC/protectionRoute";
 
 export async function getStaticProps(context) {
   try {
@@ -141,4 +140,4 @@ const Index = (props) => {
   );
 };
 Index.layout = "L";
-export default Index;
+export default protectedRoute(Index);

@@ -5,6 +5,7 @@ import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { protectedRoute } from "../../HOC/protectionRoute";
 
 const Detail = (props) => {
 
@@ -309,4 +310,4 @@ export async function getServerSideProps(context) {
     }
   }
 }
-export default Detail;
+export default protectedRoute(Detail);
