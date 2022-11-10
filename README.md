@@ -7,15 +7,12 @@ Hirejobs adalah sebuah aplikasi untuk mencari kerja yang dikembangkan menggunaka
 - Teori (NextJS, SSR & CSR)
 - UI
 - Next component
-- SSR (optiional)
 - Navigation
 - CRUD
-- Authentication (optional)
 - Search, sort, pagination
 - Responsive
 - ENV
 - Reusable Component
-- REDUX (opsional)
 - Deploy
 - Buat semirip mungkin sesuai figma
 - Gunakan Bahasa Inggris untuk nama class, id, fungsi dan komponen
@@ -23,14 +20,14 @@ Hirejobs adalah sebuah aplikasi untuk mencari kerja yang dikembangkan menggunaka
 - Presentasikan
 
 ### Week 10
-Semua requirement di minggu 9 (terutama crud dan pagination, search dan sort)
-Menggunakan dynamic route
-Menggunakan static data dan path (SGG)
-Fetching dari server (SSR)
-Autentikasi (login, register, dan logout)
-Buat semirip mungkin sesuai figma
-Gunakan Bahasa Inggris untuk nama class, id, fungsi dan komponen
-Upload/push ke github dan gunakan nama yang profesional
-Presentasikan
-Toeri, SSG, library and framework, unit testing
+- Semua requirement di minggu 9 (terutama crud dan pagination, search dan sort)
+- Menggunakan dynamic route
+- Menggunakan static data dan path (SGG)
+- Fetching dari server (SSR)
+- Autentikasi (login, register, dan logout)
+- Buat semirip mungkin sesuai figma
+- Gunakan Bahasa Inggris untuk nama class, id, fungsi dan komponen
+- Upload/push ke github dan gunakan nama yang profesional
+- Presentasikan
+- Teori, SSG, library and framework, unit testing
 
