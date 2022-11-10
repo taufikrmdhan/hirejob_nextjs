@@ -74,12 +74,12 @@ const Detail = (props) => {
                             <p className="text-muted">{item.description}</p>
                           </div>
                           <div className="col-md-12 my-2">
-                            <Link className="" href="/updateprofile/update">
+                            <Link className="" href={`/hire/${item.id_user}`}>
                               <button
                                 type="button"
                                 className="btn btnGrapeHere"
                               >
-                                Here
+                                Hire
                               </button>
                             </Link>
                           </div>
