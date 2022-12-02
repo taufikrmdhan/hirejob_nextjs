@@ -1,0 +1,9 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/pilih/pilihlogin": "pages/pilih/pilihlogin.js",
+  "/loginkerja/login": "pages/loginkerja/login.js",
+  "/landingpage/afterlogin": "pages/landingpage/afterlogin.js",
+  "/home/home": "pages/home/home.js"
+}
