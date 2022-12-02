@@ -33,7 +33,9 @@ const Index = (props) => {
         <div className="">
           <div className="col-md-12 bg-light marginNegatif">
             <div className="container ">
-              <div className="row">
+              {
+                data? (
+                  <div className="row">
                 {data.length === 0 ? (
                   <p>Data is not available</p>
                 ) : (
@@ -170,6 +172,12 @@ const Index = (props) => {
                   })
                 )}
               </div>
+                )
+                : (
+                  <div>Data kosong</div>
+                )
+              }
+              
             </div>
           </div>
         </div>

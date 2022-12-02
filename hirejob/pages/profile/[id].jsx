@@ -35,7 +35,9 @@ const Detail = (props) => {
           <div className="col-md-12 bgUngu"></div>
           <div className="col-md-12 bg-light marginNegatif">
             <div className="container">
-              <div className="row ">
+              {
+                data? (
+                  <div className="row ">
                 {
                   data.length === 0 ? (
                     <p>Data is not available</p>
@@ -284,6 +286,12 @@ const Detail = (props) => {
                   </div>
                 </div>
               </div>
+                )
+                : (
+                  <div>Data kosong</div>
+                )
+              }
+              
             </div>
           </div>
         </div>
