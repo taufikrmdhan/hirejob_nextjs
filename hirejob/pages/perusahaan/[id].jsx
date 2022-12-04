@@ -9,13 +9,20 @@ export async function getStaticProps(context) {
   try {
     const {id} = context.params;
     console.log(id)
-    const response = await axios({
-        method: 'GET',
-        url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id}`,
-    })
+    // const response = await axios({
+    //     method: 'GET',
+    //     url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id}`,
+    // })
+    const resultList = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list/${id}`,
+      {
+        method: "GET",
+      }
+    )
+    const data = await resultList.json();
     return {
         props: {
-            data: response.data.data
+            data: data.data
         },
         revalidate: 1,
         notFound: false

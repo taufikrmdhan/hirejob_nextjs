@@ -244,14 +244,22 @@ Index.layout = "L";
 export async function getServerSideProps(context) {
   const user = [];
   try {
-    const data = await axios
-    .get(
-      `${
-        process.env.NEXT_PUBLIC_API_URL
-      }/user/list?sort=name&asc=asc&limit=3&page=1
-      }`
+    // const data = await axios
+    // .get(
+    //   `${
+    //     process.env.NEXT_PUBLIC_API_URL
+    //   }/user/list?sort=name&asc=asc&limit=3&page=1
+    //   }`
+    // )
+    // user.push(data.data.data);
+    const resultList = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/list?sort=name&asc=asc&limit=3&page=1`,
+      {
+        method: "GET",
+      }
     )
-    user.push(data.data.data);
+    const data = await resultList.json();
+    user.push(data.data);
   }
   catch (err) {
     console.log(err);

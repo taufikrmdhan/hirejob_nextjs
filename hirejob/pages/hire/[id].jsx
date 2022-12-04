@@ -9,6 +9,7 @@ import { protectedRoute } from "../../HOC/protectionRoute";
 
 const Index = (props) => {
   const [data, setData] = useState(props.resUser[0]);
+  console.log(props.resUser)
 
   // useEffect(() => {
   //   axios
@@ -192,9 +193,17 @@ export async function getServerSideProps(context) {
   let resUser = [];
 
   try {
-    const { data } = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`
+    // const { data } = await axios.get(
+    //   `${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`
+    // );
+    // resUser.push(data.data);
+    const resultList = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`,
+      {
+        method: "GET",
+      }
     );
+    const data = await resultList.json();
     resUser.push(data.data);
   } catch (err) {
     console.log(err);

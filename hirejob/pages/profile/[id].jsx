@@ -306,7 +306,15 @@ export async function getServerSideProps(context) {
   let resUser = [];
 
   try {
-    const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`);
+    // const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`);
+    // resUser.push(data.data);
+    const resList = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/list/${id}`,
+      {
+        method: "GET",
+      }
+    )
+    const data = await resList.json();
     resUser.push(data.data);
   } catch (err) {
     console.log(err);

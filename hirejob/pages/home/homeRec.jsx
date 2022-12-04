@@ -8,16 +8,20 @@ import { protectedRoute } from "../../HOC/protectionRoute";
 // import { useRouter } from "next/router";
 
 export async function getStaticProps(){
-  const response = await axios({
-    method: 'GET',
-    url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list`,
-    // headers: {
-    //   token: localStorage.getItem('token')
-    // }
-  })
+  // const response = await axios({
+  //   method: 'GET',
+  //   url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list`,
+  // })
+  const resList = await fetch(
+    `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list`,
+    {
+      method: "GET",
+    }
+  )
+  const data = await resList.json()
   return {
     props:{
-      data: response.data.data
+      data: data.data
     },
     revalidate: 1
   }

@@ -25,10 +25,15 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/hire/[id]": [
+    "/loginrekrut/login": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/hire/[id].js"
+      "static/chunks/pages/loginrekrut/login.js"
+    ],
+    "/updateperus/update": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/updateperus/update.js"
     ]
   },
   "ampFirstPages": []
