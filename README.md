@@ -83,6 +83,9 @@ Hirejobs is an application to find work developed using several technologies inc
 ## Related Project
 RESTful API for this web application, clone this for development Foodtemplate.\
 [backend-slicinghirejobtemplate](https://github.com/taufikrmdhan/backend_hirejob)
+<br/>
+[deploy-slicinghirejobtemplate](https://hirejob-nine.vercel.app/)
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
