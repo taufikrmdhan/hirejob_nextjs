@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/53fRWqE_WDMK60SiTT2Wn/_buildManifest.js",
-    "static/53fRWqE_WDMK60SiTT2Wn/_ssgManifest.js"
+    "static/i_lH_sPzAkcbhEKouMh48/_buildManifest.js",
+    "static/i_lH_sPzAkcbhEKouMh48/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -191,7 +191,7 @@
       "static/chunks/framework-3b5a00d5d7e8d93b.js",
       "static/chunks/main-d2a793b6dc23a82a.js",
       "static/chunks/148-73f07314166efa77.js",
-      "static/chunks/pages/updateprofile/update-ac56633ec5a6a0a4.js"
+      "static/chunks/pages/updateprofile/update-32e653da24171306.js"
     ]
   },
   "ampFirstPages": []

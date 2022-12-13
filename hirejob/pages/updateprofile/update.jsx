@@ -73,6 +73,11 @@ const Index = () => {
     setImage(fileUploaded);
   };
 
+  const logout = () => {
+    localStorage.clear();
+    router.push("/loginkerja/login");
+  };
+
   return (
     <>
       <div>
@@ -191,6 +196,7 @@ const Index = () => {
                     <button type="button" className="btn btnGrape2 w-100">
                       Batal
                     </button>
+                    <button type="button" onClick={logout} className="btn btn-danger w-100 mt-2">Logout</button>
                   </div>
                 </div>
                 <div className="col-md-8 upProfileDiri">
