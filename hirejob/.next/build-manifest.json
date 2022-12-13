@@ -25,15 +25,20 @@
       "static/chunks/main.js",
       "static/chunks/pages/_error.js"
     ],
-    "/loginrekrut/login": [
+    "/home/home": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/loginrekrut/login.js"
+      "static/chunks/pages/home/home.js"
     ],
-    "/updateperus/update": [
+    "/landingpage/afterlogin": [
       "static/chunks/webpack.js",
       "static/chunks/main.js",
-      "static/chunks/pages/updateperus/update.js"
+      "static/chunks/pages/landingpage/afterlogin.js"
+    ],
+    "/loginkerja/login": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/loginkerja/login.js"
     ]
   },
   "ampFirstPages": []

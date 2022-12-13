@@ -2,6 +2,7 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/updateperus/update": "pages/updateperus/update.js",
-  "/loginrekrut/login": "pages/loginrekrut/login.js"
+  "/loginkerja/login": "pages/loginkerja/login.js",
+  "/landingpage/afterlogin": "pages/landingpage/afterlogin.js",
+  "/home/home": "pages/home/home.js"
 }
