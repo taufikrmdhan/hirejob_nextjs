@@ -2,10 +2,11 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 // import axios from "axios";
-// import {useRouter} from "next/router";
+import {useRouter} from "next/router";
+
 
 const Navbar = () => {
-  // const router = useRouter();
+  const router = useRouter();
   // const [user, setUser] = useState({});
 
   // useEffect(() => {
@@ -22,13 +23,23 @@ const Navbar = () => {
   //     });
   // }, []);
 
+  const navigateLogo = () => {
+    router.push("/landingpage/afterlogin");
+  }
+
   return (
     <div className="container-fluid">
       <nav className="navbar navbar-expand-lg bg-white">
         <div className="container-fluid">
-          <Link className="navbar-brand mx-5" href="/">
+          <button
+          type="submit"
+          onClick={navigateLogo}
+          style={{background: "none", border: "none"}}
+          >
+          
             <Image src="/Group 980 2.png" width="100" height={30} alt="logo" />
-          </Link>
+          
+          </button>
           <button
             className="navbar-toggler"
             type="button"
