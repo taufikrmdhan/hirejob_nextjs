@@ -14,7 +14,7 @@ const Index = () => {
       <div className="container-fluid">
         <nav className="navbar navbar-expand-lg bg-white fixed-top">
           <div className="container-fluid">
-            <Link className="navbar-brand mx-5" href="/">
+            <Link className="navbar-brand mx-5" href="#">
               <img src="/Group 980 2.png" width="100" alt="logo" />
             </Link>
             <button
@@ -36,7 +36,7 @@ const Index = () => {
                   </Link>
                 </li>
               </ul>
-              <Link href="/perusahaan/profile">
+              <Link href="/updateprofile/update">
                 <button type="button" className="btn btnGrape mx-5">
                   Profile
                 </button>

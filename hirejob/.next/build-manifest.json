@@ -5,8 +5,8 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/5o0jpk8GLYiYh2Vk7zHzf/_buildManifest.js",
-    "static/5o0jpk8GLYiYh2Vk7zHzf/_ssgManifest.js"
+    "static/m1spd8l99lsHRFpnl7z--/_buildManifest.js",
+    "static/m1spd8l99lsHRFpnl7z--/_ssgManifest.js"
   ],
   "rootMainFiles": [],
   "pages": {
@@ -91,13 +91,13 @@
       "static/chunks/webpack-e449497a0309dded.js",
       "static/chunks/framework-3b5a00d5d7e8d93b.js",
       "static/chunks/main-d2a793b6dc23a82a.js",
-      "static/chunks/pages/landingpage/afterlogin-9a20f9f9f4d16e91.js"
+      "static/chunks/pages/landingpage/afterlogin-3e776292b8cc00cf.js"
     ],
     "/landingpage/afterloginRec": [
       "static/chunks/webpack-e449497a0309dded.js",
       "static/chunks/framework-3b5a00d5d7e8d93b.js",
       "static/chunks/main-d2a793b6dc23a82a.js",
-      "static/chunks/pages/landingpage/afterloginRec-e1300fd565ee9391.js"
+      "static/chunks/pages/landingpage/afterloginRec-b041c07c6aba3f4b.js"
     ],
     "/landingpage/beforelogin": [
       "static/chunks/webpack-e449497a0309dded.js",
