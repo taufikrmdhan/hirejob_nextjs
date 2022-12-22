@@ -12,7 +12,7 @@ const Index = () => {
   const [recruiter, setRecruiter] = useState([]);
   const [image, setImage] = useState("");
   const navigateLogo = () => {
-    router.push("/landingpage/afterlogin");
+    router.push("/landingpage/afterloginRec");
   }
 
   useEffect(() => {

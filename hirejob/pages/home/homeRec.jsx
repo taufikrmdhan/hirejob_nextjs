@@ -60,7 +60,7 @@ const Index = (props) => {
   // // },[])
   const router = useRouter();
   const navigateLogo = () => {
-    router.push("/landingpage/afterlogin");
+    router.push("/landingpage/afterloginRec");
   }
   return (
     <>
