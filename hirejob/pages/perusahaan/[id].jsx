@@ -281,5 +281,5 @@ export async function getServerSideProps(context) {
   };
 }
 
-Index.layout = "L";
+Index.layout = "L2";
 export default protectedRoute(Index);

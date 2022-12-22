@@ -2,12 +2,14 @@
 import React from "react";
 import Head from "next/head";
 import Footer from "../../component/Footer";
+import Image from "next/image";
 import axios from "axios";
 import Link from "next/link";
 import { protectedRoute } from "../../HOC/protectionRoute";
-// import { useRouter } from "next/router";
+import {useRouter} from "next/router";
 
 export async function getStaticProps(){
+
   // const response = await axios({
   //   method: 'GET',
   //   url: `${process.env.NEXT_PUBLIC_API_URL}/recruiter/list`,
@@ -56,6 +58,10 @@ const Index = (props) => {
   // //       console.log(err);
   // //     });
   // // },[])
+  const router = useRouter();
+  const navigateLogo = () => {
+    router.push("/landingpage/afterlogin");
+  }
   return (
     <>
       <Head>
@@ -63,6 +69,87 @@ const Index = (props) => {
         <meta name="keywords" content="home" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div className="container-fluid">
+      <nav className="navbar navbar-expand-lg bg-white">
+        <div className="container-fluid">
+          <button
+          type="submit"
+          onClick={navigateLogo}
+          style={{background: "none", border: "none"}}
+          >
+          
+            <Image src="/Group 980 2.png" width="100" height={30} alt="logo" />
+          
+          </button>
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarText"
+            aria-controls="navbarText"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarText">
+            <ul className="navbar-nav me-auto mb-2 ms-5 mb-lg-0">
+              <li className="nav-item">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  href="/home/homeRec"
+                >
+                  Home
+                </Link>
+              </li>
+            </ul>
+            <div className="dropdown">
+              <a
+                className="nav-link active mx-5"
+                aria-current="page"
+                href="#"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                <img src="/Group 797.png" width="20" alt="" className="mx-4" />
+                <img
+                  src="/btnNotifications.png"
+                  width="20"
+                  alt=""
+                  className="ms-2"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#collapseWidthExample"
+                  aria-expanded="false"
+                  aria-controls="collapseWidthExample"
+                />
+                <div>
+                  <div
+                    className="collapse collapse-vertical"
+                    id="collapseWidthExample"
+                  >
+                    <div className="card card-body" width={40}>
+                    <img src="/notify.png" width="20" alt="" className="mx-4" />
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            <Link href="/updateperus/update">
+              <Image
+                src="/nnzkZNYWHaU.png"
+                width={45}
+                height={45}
+                className="mobileProfileNavbar mx-5 rounded-circle customBorder"
+                alt="profile image"
+              />
+            </Link>
+          </div>
+        </div>
+      </nav>
+    </div>
 
       <div className="container-fluid grape text-white px-4 py-3">
         <h4 className="px-5 ">Top Jobs</h4>
@@ -200,5 +287,5 @@ const Index = (props) => {
     </>
   );
 };
-Index.layout = "L";
+Index.layout = "L2";
 export default protectedRoute(Index);

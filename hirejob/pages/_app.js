@@ -5,9 +5,11 @@ import "../styles/style.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import 'font-awesome/css/font-awesome.min.css';
 import Layout from "../layouts/layout";
+import Layout2 from "../layouts/layout2";
 import Layfooter from "../layouts/footerlay";
 
 const layouts = {
+  L2: Layout2,
   L: Layout,
   F: Layfooter,
 };
