@@ -1,15 +1,69 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from "react";
 import Head from "next/head";
 // import {useSearchParams} from "react-router-dom";
 import Link from "next/link";
 import Footer from "../../component/Footer";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { protectedRoute } from "../../HOC/protectionRoute";
+import {useRouter} from "next/router";
+import {protectedRoute} from "../../HOC/protectionRoute";
 
 const Detail = (props) => {
-
   const [data, setData] = useState(props.resUser[0]);
+  const [loading, setLoading] = useState({
+    portfolioData: true,
+    experienceData: true,
+  });
+  const [portfolioData, setPortfolioData] = useState([]);
+  const [experienceData, setExperienceData] = useState([]);
+
+  const getPortfolioData = async () => {
+    try {
+      setLoading({...loading, portfolioData: true});
+      const {data} = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/portofolio`
+      );
+      if (data.code !== 200) {
+        throw new Error(`${data.code}: ${data.message} - ${data.error}`);
+      }
+      setPortfolioData(data.data);
+    } catch (error) {
+      console.log(error);
+      alert(error || "Failed To Get Portfolio Data");
+      setExperienceData([]);
+    } finally {
+      setLoading({...loading, portfolioData: false});
+    }
+  };
+
+  const formatDate = (dateString) => {
+    // convert date string to local date MM/YY
+    const date = new Date(dateString);
+    const month = date.toLocaleString("default", {month: "long"});
+    const year = date.getFullYear();
+    return `${month} ${year}`;
+  };
+
+  const getExperienceData = async () => {
+    try {
+      setLoading({...loading, experienceData: true});
+      const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/job`);
+      if (data.code !== 200) {
+        throw new Error(`${data.code}: ${data.message} - ${data.error}`);
+      }
+      setExperienceData(data.data);
+    } catch (error) {
+      console.log(error);
+      alert(error || "Failed To Get Experience Data");
+      setExperienceData([]);
+    } finally {
+      setLoading({...loading, experienceData: false});
+    }
+  };
+
+  useEffect(() => {
+    getPortfolioData();
+    getExperienceData();
+  }, []);
 
   // useEffect(() => {
   //   axios
@@ -35,16 +89,17 @@ const Detail = (props) => {
           <div className="col-md-12 bgUngu"></div>
           <div className="col-md-12 bg-light marginNegatif">
             <div className="container">
-              {
-                data? (
-                  <div className="row ">
-                {
-                  data.length === 0 ? (
+              {data ? (
+                <div className="row ">
+                  {data.length === 0 ? (
                     <p>Data is not available</p>
                   ) : (
                     data.map((item) => {
                       return (
-                        <div key={item.id_user} className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile">
+                        <div
+                          key={item.id_user}
+                          className="col-md-3 bg-white mb-5 rounded p-2 px-4 upProfile"
+                        >
                           <div className="col-md-12 my-2">
                             <img
                               src={`${process.env.NEXT_PUBLIC_API_URL}/${item.image}`}
@@ -89,7 +144,10 @@ const Detail = (props) => {
                             <h6>Skill</h6>
                           </div>
                           <div className="col-md-12">
-                            <button type="button" className="btn btnCustom ms-2 mt-2">
+                            <button
+                              type="button"
+                              className="btn btnCustom ms-2 mt-2"
+                            >
                               {item.skill}
                             </button>
                             <button
@@ -105,7 +163,7 @@ const Detail = (props) => {
                               {item.skill}
                             </button>
                           </div>
-                    
+
                           <div className="col-md-12 mt-5">
                             <div className="row">
                               <div className="col-md-1">
@@ -120,9 +178,7 @@ const Detail = (props) => {
                                 <i className="fa fa-envelope text-muted"></i>
                               </div>
                               <div className="col-md-8">
-                                <p className="text-muted">
-                                  {item.email}
-                                </p>
+                                <p className="text-muted">{item.email}</p>
                               </div>
                             </div>
                             <div className="row">
@@ -137,161 +193,140 @@ const Detail = (props) => {
                         </div>
                       );
                     })
-                  )
-                }
+                  )}
 
-                <div className="col-md-8 bg-white mb-5 ms-4 rounded upProfileDiri">
-                  <p className="mt-3">
-                    <a
-                      class="btn mx-4 fs-4"
-                      data-bs-toggle="collapse"
-                      href="#multiCollapseExample1"
-                    >
-                      Portofolio
-                    </a>
-                    <a
-                      className="btn mx-4 fs-4"
-                      data-bs-toggle="collapse"
-                      href="#multiCollapseExample2"
-                    >
-                      Pengalaman kerja
-                    </a>
-                  </p>
+                  <div className="col-md-8 bg-white mb-5 ms-4 rounded upProfileDiri">
+                    <p className="mt-3">
+                      <a
+                        className="btn mx-4 fs-4"
+                        data-bs-toggle="collapse"
+                        href="#multiCollapseExample1"
+                      >
+                        Portofolio
+                      </a>
+                      <a
+                        className="btn mx-4 fs-4"
+                        data-bs-toggle="collapse"
+                        href="#multiCollapseExample2"
+                      >
+                        Pengalaman kerja
+                      </a>
+                    </p>
 
-                  <div
-                    className="collapse multi-collapse"
-                    id="multiCollapseExample1"
-                  >
-                    <div class="container-fluid mt-5">
-                      <div className="row">
-                        <div className="col-md-4">
-                          {/* image and title */}
-                          <div className="col-md-12">
-                            <img
-                              src="/port.png"
-                              width="img-fluid"
-                              alt=""
-                              className="mx-auto d-block rounded"
-                            />
-                          </div>
-                          <div className="col-md-12">
-                            <h5 className="my-3 d-flex align-items-center justify-content-center">
-                              Portofolio dummy
-                            </h5>
-                          </div>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="col-md-12">
-                            <img
-                              src="/port2.png"
-                              width="img-fluid"
-                              alt=""
-                              className="mx-auto d-block rounded"
-                            />
-                          </div>
-                          <div className="col-md-12">
-                            <h5 className="my-3 d-flex align-items-center justify-content-center">
-                              Portofolio dummy
-                            </h5>
-                          </div>
-                        </div>
-                        <div className="col-md-4">
-                          <div className="col-md-12">
-                            <img
-                              src="/port.png"
-                              width="img-fluid"
-                              alt=""
-                              className="mx-auto d-block rounded"
-                            />
-                          </div>
-                          <div className="col-md-12">
-                            <h5 className="my-3 d-flex align-items-center justify-content-center">
-                              Portofolio dummy
-                            </h5>
-                          </div>
+                    {/* Portfolio List */}
+                    <div
+                      className="collapse multi-collapse"
+                      id="multiCollapseExample1"
+                    >
+                      <div className="container-fluid mt-5">
+                        <div className="row">
+                          {loading.portfolioData ? (
+                            <div>Loading get portfolio data</div>
+                          ) : (
+                            <>
+                              {portfolioData.length > 0 ? (
+                                portfolioData.map((item) => (
+                                  <div
+                                    className="col-md-4"
+                                    key={`portfolio-data-${item.id_portofolio}`}
+                                  >
+                                    {/* image and title */}
+                                    <div className="col-md-12">
+                                      <img
+                                        src={
+                                          item.image_secure_url || "/port.png"
+                                        }
+                                        width={150}
+                                        
+                                        alt={item.title}
+                                        className="mx-auto d-block rounded"
+                                      />
+                                    </div>
+                                    <div className="col-md-12">
+                                      <h5 className="my-3 d-flex align-items-center justify-content-center">
+                                        {item.title}
+                                      </h5>
+                                    </div>
+                                  </div>
+                                ))
+                              ) : (
+                                <div>No Data Portfolio Available</div>
+                              )}
+                            </>
+                          )}
                         </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div
-                    className="collapse multi-collapse"
-                    id="multiCollapseExample2"
-                  >
-                    <div className="container mt-5">
-                      {/* Pengalaman kerja  */}
-                      <div className="card mb-3 border-0 my-4">
-                        <div className="row g-0">
-                          <div className="col-md-2 d-flex align-items-center justify-content-center">
-                            <img
-                              src="/tokped.png"
-                              width={150}
-                              className="img-fluid rounded-circle"
-                              alt="..."
-                            />
-                          </div>
-                          <div className="col-md-8">
-                            <div className="card-body">
-                              <h5 className="card-title">Software Engineer</h5>
-                              <p className="card-text text-muted">Tokopedia</p>
-                              {/* date */}
-
-                              <p className="card-text text-muted">
-                                Januari 2021 - Sekarang
-                              </p>
-                              <p className="card-text text-muted">
-                                Lorem, ipsum dolor sit amet consectetur
-                                adipisicing elit. Tempore perferendis
-                                repellendus corrupti nostrum{" "}
-                              </p>
-                            </div>
-                          </div>
-                          <hr />
-                        </div>
-                        <div className="card mb-3 border-0 my-4">
-                          <div className="row g-0">
-                            <div className="col-md-2 d-flex align-items-center justify-content-center">
-                              <img
-                                src="/tokped.png"
-                                width={150}
-                                className="img-fluid rounded-circle"
-                                alt="..."
-                              />
-                            </div>
-                            <div className="col-md-8">
-                              <div className="card-body">
-                                <h5 className="card-title">
-                                  Software Engineer
-                                </h5>
-                                <p className="card-text text-muted">
-                                  Tokopedia
-                                </p>
-                                {/* date */}
-
-                                <p className="card-text text-muted">
-                                  Januari 2021 - Sekarang
-                                </p>
-                                <p className="card-text text-muted">
-                                  Lorem, ipsum dolor sit amet consectetur
-                                  adipisicing elit. Tempore perferendis
-                                  repellendus corrupti nostrum{" "}
-                                </p>
-                              </div>
-                            </div>
-                            <hr />
-                          </div>
-                        </div>
+                    <div
+                      className="collapse multi-collapse"
+                      id="multiCollapseExample2"
+                    >
+                      <div className="container mt-5">
+                        {/* Pengalaman kerja  */}
+                        {loading.experienceData ? (
+                          <div>Loading...</div>
+                        ) : (
+                          <>
+                            {experienceData?.length > 0 ? (
+                              experienceData.map((item) => (
+                                <div
+                                  className="card mb-3 border-0 my-4"
+                                  key={`experience-${item.id_job}`}
+                                >
+                                  <div className="row g-0">
+                                    <div className="col-md-2 d-flex align-items-center justify-content-center">
+                                      <img
+                                        src={
+                                          item.image_secure_url || "/tokped.png"
+                                        }
+                                        width={150}
+                                        className="img-fluid rounded-circle"
+                                        alt={item.company}
+                                      />
+                                    </div>
+                                    <div className="col-md-8">
+                                      <div className="card-body">
+                                        <h5 className="card-title">
+                                          {item.job_title || "Job Title"}
+                                        </h5>
+                                        <p className="card-text text-muted">
+                                          {item.company || "Company"}
+                                        </p>
+                                        <p className="card-text text-muted">
+                                          <span>
+                                            {item?.date_in
+                                              ? formatDate(item.date_in)
+                                              : null}{" "}
+                                          </span>
+                                          <span> - </span>
+                                          <span>
+                                            {item?.date_out
+                                              ? formatDate(item.date_out)
+                                              : "Sekarang"}{" "}
+                                          </span>
+                                        </p>
+                                        <p className="card-text text-muted">
+                                          {item.description || "Description"}
+                                        </p>
+                                      </div>
+                                    </div>
+                                    <hr />
+                                  </div>
+                                </div>
+                              ))
+                            ) : (
+                              <div>Data Pengalaman Kerja Tidak Tersedia</div>
+                            )}
+                          </>
+                        )}
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-                )
-                : (
-                  <div>Data kosong</div>
-                )
-              }
-              
+              ) : (
+                <div>Data kosong</div>
+              )}
             </div>
           </div>
         </div>
@@ -313,7 +348,7 @@ export async function getServerSideProps(context) {
       {
         method: "GET",
       }
-    )
+    );
     const data = await resList.json();
     resUser.push(data.data);
   } catch (err) {
@@ -323,7 +358,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       resUser,
-    }
-  }
+    },
+  };
 }
 export default protectedRoute(Detail);

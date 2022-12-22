@@ -1,14 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Head from "next/head";
 import Footer from "../../component/Footer";
 import axios from "axios";
-import { useRouter } from "next/router";
-import { protectedRoute } from "../../HOC/protectionRoute";
+import {useRouter} from "next/router";
+import {protectedRoute} from "../../HOC/protectionRoute";
 
 const Index = () => {
   const router = useRouter();
   const [user, setUser] = useState({});
-  const [image, setImage] = useState("");
+  const [imageJob, setImageJob] = useState("");
+  const [imagePortfolio, setImagePortfolio] = useState("");
+  const [imageProfile, setImageProfile] = useState("");
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("data"));
     const id_user = data.id_user;
@@ -29,8 +31,8 @@ const Index = () => {
     const id_user = data.id_user;
     console.log(id_user);
     let formData = new FormData(e.target);
-    if (image !== "") {
-      formData.append("image", image);
+    if (imageProfile !== "") {
+      formData.append("imageProfile", imageProfile);
     }
     formData.append("id_user", id_user);
     axios
@@ -67,10 +69,87 @@ const Index = () => {
     console.log(event);
     hiddenFileInput.current.click();
   };
-  const handleChange = (event) => {
+
+  const experienceFileInput = useRef(null);
+  const handlePickFileExperience = (event) => {
+    console.log(event);
+    experienceFileInput.current.click();
+  };
+  const handleChange = (event, type) => {
     const fileUploaded = event.target.files[0];
     console.log(fileUploaded);
-    setImage(fileUploaded);
+    if (type === "job") {
+      setImageJob(fileUploaded);
+    } else if (type === "portfolio") {
+      setImagePortfolio(fileUploaded);
+    } else if (type === "profile") {
+      setImageProfile(fileUploaded);
+    } else {
+      alert("error");
+    }
+  };
+
+  const handleAddJobExperience = (e) => {
+    e.preventDefault();
+    // get value from form
+    const formData = new FormData(e.target);
+    const experienceForm = Object.fromEntries(formData);
+    // validate if image is empty
+    if (imageJob === "") {
+      alert("Image is required");
+      return;
+    }
+    // format date
+    experienceForm.date_in = new Date(experienceForm.date_in).toISOString();
+    experienceForm.date_out = new Date(experienceForm.date_out).toISOString();
+    experienceForm.image = imageJob;
+    console.log("experience", experienceForm);
+    axios
+      .post(`${process.env.NEXT_PUBLIC_API_URL}/job/add`, experienceForm, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        alert("Add Success");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Add Failed");
+      });
+  };
+
+  const handleAddPortfolio = (e) => {
+    e.preventDefault();
+    // get value from form
+    const formData = new FormData(e.target);
+    const portfolioForm = Object.fromEntries(formData);
+    // validate if image is empty
+    if (imagePortfolio === "") {
+      alert("Image is required");
+      return;
+    }
+    portfolioForm.image = imagePortfolio;
+    console.log("portfolio", portfolioForm);
+    axios
+      .post(
+        `${process.env.NEXT_PUBLIC_API_URL}/portofolio/add`,
+        portfolioForm,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res);
+        alert("Add Success");
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Add Failed");
+      });
   };
 
   const logout = () => {
@@ -123,8 +202,8 @@ const Index = () => {
                           ref={hiddenFileInput}
                           id="formFile"
                           name="image"
-                          onChange={(e) => handleChange(e)}
-                          style={{ display: "none" }}
+                          onChange={(e) => handleChange(e, "profile")}
+                          style={{display: "none"}}
                         />
                       </div>
                     </div>
@@ -196,7 +275,13 @@ const Index = () => {
                     <button type="button" className="btn btnGrape2 w-100">
                       Batal
                     </button>
-                    <button type="button" onClick={logout} className="btn btn-danger w-100 mt-2">Logout</button>
+                    <button
+                      type="button"
+                      onClick={logout}
+                      className="btn btn-danger w-100 mt-2"
+                    >
+                      Logout
+                    </button>
                   </div>
                 </div>
                 <div className="col-md-8 upProfileDiri">
@@ -357,7 +442,7 @@ const Index = () => {
                       </div>
                     </div>
                   </form>
-                  <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
+                  {/* <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
                     <h4 className="mt-3">Skill</h4>
                     <hr />
                     <div className="col-md-12 my-2 mt-4">
@@ -380,8 +465,11 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
+                  </div> */}
+                  <form
+                    onSubmit={handleAddJobExperience}
+                    className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded"
+                  >
                     <h4 className="mt-3">Pengalaman kerja</h4>
                     <hr />
                     <div className="col-md-12 my-2 mt-4">
@@ -392,30 +480,47 @@ const Index = () => {
                         type="text"
                         className="form-control"
                         id="posisi"
+                        name="job_title"
+                        required
                         placeholder="Web developer"
+                      />
+                    </div>
+                    <div className="col-md-12 my-2 mt-4">
+                      <label htmlFor="namaPerusahaan" className="form-label">
+                        Nama perusahaan
+                      </label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="namaPerusahaan"
+                        name="company"
+                        required
+                        placeholder="PT. XYZ"
                       />
                     </div>
                     <div className="row">
                       <div className="col-md-6 my-2 mt-4">
-                        <label htmlFor="namaPerusahaan" className="form-label">
-                          Nama perusahaan
+                        <label htmlFor="tahun_masuk" className="form-label">
+                          Bulan/Tahun Masuk
                         </label>
                         <input
-                          type="text"
+                          type="date"
                           className="form-control"
-                          id="namaPerusahaan"
-                          placeholder="PT. XYZ"
+                          name="date_in"
+                          required
+                          id="tahun_masuk"
                         />
                       </div>
                       <div className="col-md-6 my-2 mt-4">
-                        <label htmlFor="tahun" className="form-label">
-                          Bulan/Tahun
+                        <label htmlFor="tahun_keluar" className="form-label">
+                          Bulan/Tahun Keluar
                         </label>
                         <input
-                          type="text"
+                          type="date"
                           className="form-control"
-                          id="tahun"
-                          placeholder="Januari 2020"
+                          name="date_out"
+                          required
+                          id="tahun_keluar"
                         />
                       </div>
                     </div>
@@ -427,90 +532,32 @@ const Index = () => {
                         className="form-control"
                         id="deskripsiSingkat"
                         rows="5"
+                        name="description"
+                        required
                         placeholder="Tuliskan deskripsi singkat"
                       ></textarea>
                     </div>
-                    <hr className="my-4" />
-                    <button type="button" className="btn btnAdd">
-                      Tambah pengalaman kerja
-                    </button>
-                  </div>
-                  <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
-                    <h4 className="mt-3">Portfolio</h4>
-                    <hr />
                     <div className="col-md-12 my-2 mt-4">
-                      <label htmlFor="namaAplikasi" className="form-label">
-                        Nama aplikasi
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="namaAplikasi"
-                        placeholder="Masukkan nama aplikasi"
-                      />
-                    </div>
-                    <div className="col-md-12 my-2 mt-4">
-                      <label htmlFor="linkRepository" className="form-label">
-                        Link repository
-                      </label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        id="linkRepository"
-                        placeholder="Masukkan link repository"
-                      />
-                    </div>
-                    <div className="row my-2 mt-4">
-                      <label htmlFor="typePort" className="form-label">
-                        Type portfolio
-                      </label>
-                      <div className="col-md-3">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexRadioDefault1"
-                          >
-                            Aplikasi mobile
-                          </label>
-                        </div>
-                      </div>
-                      <div className="col-md-3">
-                        <div className="form-check">
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="flexRadioDefault"
-                            id="flexRadioDefault1"
-                          />
-                          <label
-                            className="form-check-label"
-                            htmlFor="flexRadioDefault1"
-                          >
-                            Aplikasi Web
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-md-12 my-2 mt-4">
-                      <label htmlFor="upload" className="form-label">
+                      <label
+                        htmlFor="uploadExperienceImage"
+                        className="form-label"
+                      >
                         Upload
                       </label>
                       <div className="container custDashed text-muted">
                         <div className="col-md-12 text-center my-5">
-                          <img src="/Vector.png" alt="" onClick={handleClick} />
+                          <img
+                            src="/Vector.png"
+                            alt=""
+                            onClick={handlePickFileExperience}
+                          />
                         </div>
                         <input
                           type="file"
-                          ref={hiddenFileInput}
-                          id="formFile"
-                          onChange={(e) => handleChange(e)}
-                          style={{ display: "none" }}
+                          ref={experienceFileInput}
+                          id="uploadExperienceImage"
+                          onChange={(e) => handleChange(e, "job")}
+                          style={{display: "none"}}
                         />
                         <div className="col-md-12 text-center my-2">
                           <h5 className="text-muted">
@@ -550,10 +597,105 @@ const Index = () => {
                         </div>
                       </div>
                     </div>
-                    <hr />
-                    <button type="button" className="btn btnAdd">
-                      Tambah Portfolio
+                    <hr className="my-4" />
+                    <button type="submit" className="btn btnAdd">
+                      Tambah pengalaman kerja
                     </button>
+                  </form>
+                  <div className="col-md-12 bg-white mt-5 mb-5 ms-4 p-3 rounded">
+                    <form onSubmit={handleAddPortfolio}>
+                      <h4 className="mt-3">Portfolio</h4>
+                      <hr />
+                      <div className="col-md-12 my-2 mt-4">
+                        <label htmlFor="namaAplikasi" className="form-label">
+                          Nama aplikasi
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          name="title"
+                          id="namaAplikasi"
+                          placeholder="Masukkan nama aplikasi"
+                        />
+                      </div>
+                      <div className="col-md-12 my-2 mt-4">
+                        <label htmlFor="linkRepository" className="form-label">
+                          Link repository
+                        </label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="linkRepository"
+                          name="link"
+                          placeholder="Masukkan link repository"
+                        />
+                      </div>
+                      <div className="col-md-12 my-2 mt-4">
+                        <label htmlFor="upload" className="form-label">
+                          Upload
+                        </label>
+                        <div className="container custDashed text-muted">
+                          <div className="col-md-12 text-center my-5">
+                            <img
+                              src="/Vector.png"
+                              alt=""
+                              onClick={handleClick}
+                            />
+                          </div>
+                          <input
+                            type="file"
+                            ref={hiddenFileInput}
+                            id="formFile"
+                            onChange={(e) => handleChange(e, "portfolio")}
+                            style={{display: "none"}}
+                          />
+                          <div className="col-md-12 text-center my-2">
+                            <h5 className="text-muted">
+                              Drag & Drop untuk Upload Gambar Aplikasi Mobile
+                            </h5>
+                          </div>
+                          <div className="col-md-12 text-center my-3 mb-5">
+                            <p className="text-muted">
+                              Atau cari untuk mengupload file dari direktorimu.
+                            </p>
+                          </div>
+                          <div className="row d-flex justify-content-center align-items-center mb-5">
+                            <div className="col-md-6">
+                              <div className="row ms-5 ">
+                                <div className="col-md-4 mt-2 text-end">
+                                  <img src="/ext.png" alt="" />
+                                </div>
+                                <div className="col-md-7 text-muted ">
+                                  <div className="col-md-12">
+                                    High-Res Image
+                                  </div>
+                                  <div className="col-md-12">
+                                    PNG, JPG or GIF
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                            <div className="col-md-6">
+                              <div className="row">
+                                <div className="col-md-4 mt-2 text-end">
+                                  <img src="/sizerev.png" alt="" />
+                                </div>
+                                <div className="col-md-7 text-muted ">
+                                  <div className="col-md-12">Size</div>
+                                  <div className="col-md-12">
+                                    1080x1920 or 600x800
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr />
+                      <button type="submit" className="btn btnAdd">
+                        Tambah Portfolio
+                      </button>
+                    </form>
                   </div>
                 </div>
               </div>
