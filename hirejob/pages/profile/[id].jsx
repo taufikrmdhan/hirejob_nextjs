@@ -9,16 +9,19 @@ import {protectedRoute} from "../../HOC/protectionRoute";
 
 const Detail = (props) => {
   const [data, setData] = useState(props.resUser[0]);
-  const [loading, setLoading] = useState({
-    portfolioData: true,
-    experienceData: true,
-  });
+  // const [loading, setLoading] = useState({
+  //   portfolioData: true,
+  //   experienceData: true,
+  // });
+  const [loadingPortofolioData, setLoadingPortofolioData] = useState(true);
+  const [loadingExperienceData, setLoadingExperienceData] = useState(true);
   const [portfolioData, setPortfolioData] = useState([]);
   const [experienceData, setExperienceData] = useState([]);
 
   const getPortfolioData = async () => {
     try {
-      setLoading({...loading, portfolioData: true});
+      // setLoading({...loading, portfolioData: true});
+      setLoadingPortofolioData(true);
       const {data} = await axios.get(
         `${process.env.NEXT_PUBLIC_API_URL}/portofolio`
       );
@@ -31,7 +34,8 @@ const Detail = (props) => {
       alert(error || "Failed To Get Portfolio Data");
       setExperienceData([]);
     } finally {
-      setLoading({...loading, portfolioData: false});
+      // setLoading({...loading, portfolioData: false});
+      setLoadingPortofolioData(false);
     }
   };
 
@@ -45,7 +49,9 @@ const Detail = (props) => {
 
   const getExperienceData = async () => {
     try {
-      setLoading({...loading, experienceData: true});
+      // setLoading({...loading, experienceData: true});
+
+      setLoadingExperienceData(true);
       const {data} = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/job`);
       if (data.code !== 200) {
         throw new Error(`${data.code}: ${data.message} - ${data.error}`);
@@ -56,7 +62,8 @@ const Detail = (props) => {
       alert(error || "Failed To Get Experience Data");
       setExperienceData([]);
     } finally {
-      setLoading({...loading, experienceData: false});
+      // setLoading({...loading, experienceData: false});
+      setLoadingExperienceData(false);
     }
   };
 
@@ -220,7 +227,7 @@ const Detail = (props) => {
                     >
                       <div className="container-fluid mt-5">
                         <div className="row">
-                          {loading.portfolioData ? (
+                          {loadingPortofolioData ? (
                             <div>Loading get portfolio data</div>
                           ) : (
                             <>
@@ -264,7 +271,7 @@ const Detail = (props) => {
                     >
                       <div className="container mt-5">
                         {/* Pengalaman kerja  */}
-                        {loading.experienceData ? (
+                        {loadingExperienceData ? (
                           <div>Loading...</div>
                         ) : (
                           <>
